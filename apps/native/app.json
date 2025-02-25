@@ -1,8 +1,8 @@
 {
 	"expo": {
 		"owner": "van.tran",
-		"name": "native",
-		"slug": "native",
+		"name": "grocery-app",
+		"slug": "grocery-app",
 		"version": "1.0.0",
 		"scheme": "com.turbo.example",
 		"orientation": "portrait",
@@ -32,6 +32,14 @@
 			"bundler": "metro"
 		},
 		"plugins": ["expo-router"],
-		"newArchEnabled": true
+		"newArchEnabled": true,
+		"extra": {
+			"router": {
+				"origin": false
+			},
+			"eas": {
+				"projectId": "c4f8ebdb-01f9-49be-ace5-d477daff4e29"
+			}
+		}
 	}
 }
