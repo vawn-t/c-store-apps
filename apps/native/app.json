@@ -1,5 +1,6 @@
 {
 	"expo": {
+		"owner": "van.tran",
 		"name": "native",
 		"slug": "native",
 		"version": "1.0.0",
