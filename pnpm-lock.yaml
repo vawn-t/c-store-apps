@@ -13,14 +13,17 @@ importers:
   apps/native:
     specifiers:
       '@babel/core': ^7.23.7
+      '@expo-google-fonts/poppins': ^0.2.3
       '@expo/webpack-config': ^19.0.0
       '@repo/ui': workspace:*
       '@types/react': ~18.3.18
       expo: ~52.0.37
       expo-constants: ~17.0.7
       expo-dev-client: ~5.0.12
+      expo-font: ~13.0.4
       expo-linking: ~7.0.5
       expo-router: ~4.0.17
+      expo-splash-screen: ~0.29.22
       expo-status-bar: ~2.0.1
       expo-system-ui: ~4.0.8
       react: 18.3.1
@@ -31,12 +34,15 @@ importers:
       react-native-web: ~0.19.10
       typescript: 5.5.4
     dependencies:
+      '@expo-google-fonts/poppins': 0.2.3
       '@repo/ui': link:../../packages/ui
       expo: 52.0.37_42zcxfpvwc4lb3oyyxzbwjg4zm
       expo-constants: 17.0.7_rhytlgkzytbzwq3naboo34zt5i
       expo-dev-client: 5.0.12_expo@52.0.37
+      expo-font: 13.0.4_expo@52.0.37+react@18.3.1
       expo-linking: 7.0.5_mxijtyxxx7igogndxvvur56oqm
       expo-router: 4.0.17_6n6xh76mxjk2tfd2oxg3dcfoke
+      expo-splash-screen: 0.29.22_expo@52.0.37
       expo-status-bar: 2.0.1_rut2qurybwc74jc2rw5t62iapy
       expo-system-ui: 4.0.8_6tdagedd6fdv535zar3tebzmke
       react: 18.3.1
@@ -1731,6 +1737,10 @@ packages:
     resolution: {integrity: sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@expo-google-fonts/poppins/0.2.3:
+    resolution: {integrity: sha512-PXkur1ZY/puy1PwVFYPJx8qiI3dtBzC2ig1bo53swCt7/sI7krCGYRO6hLBNp15M0kcNh2J4cCR9ZQyFxsving==}
+    dev: false
 
   /@expo/bunyan/4.0.1:
     resolution: {integrity: sha512-+Lla7nYSiHZirgK+U/uYzsLv/X+HaJienbD5AKX1UQZHYfWaP+9uuQluRB4GrEVWF0GZ7vEVp/jzaOT9k/SQlg==}
@@ -5780,6 +5790,17 @@ packages:
       - react-native
       - supports-color
       - typescript
+    dev: false
+
+  /expo-splash-screen/0.29.22_expo@52.0.37:
+    resolution: {integrity: sha512-f+bPpF06bqiuW1Fbrd3nxeaSsmTVTBEKEYe3epYt4IE6y4Ulli3qEUamMLlRQiDGuIXPU6zQlscpy2mdBUI5cA==}
+    peerDependencies:
+      expo: '*'
+    dependencies:
+      '@expo/prebuild-config': 8.0.28
+      expo: 52.0.37_42zcxfpvwc4lb3oyyxzbwjg4zm
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /expo-status-bar/2.0.1_rut2qurybwc74jc2rw5t62iapy:
