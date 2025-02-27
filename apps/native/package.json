@@ -12,7 +12,6 @@
     "build:local": "eas build --profile development --platform android --local"
   },
   "dependencies": {
-    "@expo-google-fonts/poppins": "^0.2.3",
     "@repo/ui": "workspace:*",
     "expo": "~52.0.37",
     "expo-constants": "~17.0.7",
