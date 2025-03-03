@@ -1,9 +1,10 @@
 'use client';
 
 import localFont from 'next/font/local';
-import { FontWeight, Typography } from '@repo/ui';
+import { FontWeight, Typography, Button } from '@repo/ui';
 
 import styles from '../styles/index.module.css';
+import { API_URL } from '@repo/constants';
 
 const poppins = localFont({
   src: [
@@ -31,11 +32,14 @@ const poppins = localFont({
 });
 
 export default function Web() {
+  console.log('API_URL', API_URL);
+
   return (
     <div className={poppins.className}>
       <div className={styles.container}>
         <h1 style={{ fontWeight: 500 }}>Web</h1>
         <Typography fontWeight={FontWeight.Bold}> Native</Typography>
+        <Button onPress={() => console.log(123)}>123</Button>
       </div>
     </div>
   );
