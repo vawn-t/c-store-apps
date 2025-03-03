@@ -2,7 +2,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import { TextInput, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Toast from 'react-native-root-toast';
+// import Toast from 'react-native-root-toast';
 
 // Themes
 import { colors } from '@themes';
@@ -61,23 +61,23 @@ const OtpInput = ({ length = 6 }: IProps) => {
 
   useEffect(() => {
     if (isVerifyCodeSuccess) {
-      Toast.show(SUCCESS.SIGNUP.VERIFIED);
+      // Toast.show(SUCCESS.SIGNUP.VERIFIED);
 
       navigation.navigate(ScreenNames.Login);
     } else if (isVerifyCodeError) {
       if (verifyCodeError.response?.data.errors?.length) {
-        Toast.show(verifyCodeError.response.data.errors[0].msg);
+        // Toast.show(verifyCodeError.response.data.errors[0].msg);
       } else {
-        Toast.show(verifyCodeError.message);
+        // Toast.show(verifyCodeError.message);
       }
     }
   }, [isVerifyCodeSuccess, isVerifyCodeError, verifyCodeError]);
 
   useEffect(() => {
     if (isResendOtpSuccess) {
-      Toast.show(SUCCESS.RESEND_OTP);
+      // Toast.show(SUCCESS.RESEND_OTP);
     } else if (resendOtpError) {
-      Toast.show(resendOtpError.message);
+      // Toast.show(resendOtpError.message);
     }
   }, [isResendOtpSuccess, resendOtpError, resendOtpError]);
 

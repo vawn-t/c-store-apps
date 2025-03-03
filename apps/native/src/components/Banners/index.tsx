@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { Key, useCallback, useRef, useState } from 'react';
 import {
   FlatList,
   LayoutChangeEvent,
@@ -11,7 +11,7 @@ import {
 import BannerItem from './BannerItem';
 
 // Themes
-import { colors } from '@themes';
+import { colors } from '@repo/ui';
 
 // Mocks
 import { homeSlides } from '@mocks';
@@ -63,7 +63,7 @@ const Banners = () => {
       />
 
       <View style={styles.indicatorWrapper}>
-        {homeSlides.map((_, index) => {
+        {homeSlides.map((_: any, index: Key | null | undefined) => {
           let activeStyle = {};
           if (index === currentActiveSlide) {
             activeStyle = { width: 32, backgroundColor: colors.primary.main };

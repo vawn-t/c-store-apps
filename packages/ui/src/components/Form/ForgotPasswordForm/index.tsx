@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Toast from 'react-native-root-toast';
+// import Toast from 'react-native-root-toast';
 
 // Components
 import { Button, EmailIcon, Input } from '@components';
@@ -43,16 +43,16 @@ const ForgotPasswordForm = () => {
     if (isSuccess) {
       disableLoading();
 
-      Toast.show(SUCCESS.passwordSentToEmail(email));
+      // Toast.show(SUCCESS.passwordSentToEmail(email));
 
       navigation.navigate(ScreenNames.Login);
     } else if (isError) {
       disableLoading();
 
       if (error.response?.data.errors?.length) {
-        Toast.show(error.response.data.errors[0].msg);
+        // Toast.show(error.response.data.errors[0].msg);
       } else {
-        Toast.show(error.message);
+        // Toast.show(error.message);
       }
     }
   }, [isSuccess, isError, error]);
@@ -62,7 +62,7 @@ const ForgotPasswordForm = () => {
 
     if (!isFormValid) {
       // Show the first error on Toast
-      Toast.show(Object.values(errors)[0] as string);
+      // Toast.show(Object.values(errors)[0] as string);
 
       return;
     }

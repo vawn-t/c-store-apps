@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
-import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
 import LogRocket from '@logrocket/react-native';
-import * as Updates from 'expo-updates';
-
-const LOG_ROCKET_APP_ID = process.env.EXPO_PUBLIC_LOG_ROCKET;
+import { StackNavigation } from '@navigation';
+import { LOG_ROCKET_APP_ID } from '@repo/constants';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -40,7 +38,7 @@ const AppLayout = () => {
     LogRocket.init(LOG_ROCKET_APP_ID);
   }, []);
 
-  return <Stack />;
+  return <StackNavigation />;
 };
 
 export default AppLayout;
