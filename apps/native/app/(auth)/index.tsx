@@ -1,11 +1,12 @@
 import { Link } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default function RootScreen() {
+export default function AuthScreen() {
   return (
     <View style={styles.container}>
-      <Text>LANDING</Text>
-      <Link href="/(auth)">View welcome</Link>
+      <Text>Welcome</Text>
+      <Link href="/(auth)/login">View login</Link>
+      <Link href="/(auth)/signup">View signup</Link>
     </View>
   );
 }

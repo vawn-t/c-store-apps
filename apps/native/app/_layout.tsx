@@ -4,6 +4,9 @@ import { useFonts } from 'expo-font';
 import LogRocket from '@logrocket/react-native';
 import { StackNavigation } from '@navigation';
 import { LOG_ROCKET_APP_ID } from '@repo/constants';
+import { Stack } from 'expo-router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -14,7 +17,7 @@ SplashScreen.setOptions({
   fade: true,
 });
 
-const AppLayout = () => {
+const RootLayout = () => {
   const [loaded, error] = useFonts({
     'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
     'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
@@ -38,7 +41,13 @@ const AppLayout = () => {
     LogRocket.init(LOG_ROCKET_APP_ID);
   }, []);
 
-  return <StackNavigation />;
+  return (
+    <Stack>
+      <Stack.Screen name="index" />
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen name="(post-auth)" />
+    </Stack>
+  );
 };
 
-export default AppLayout;
+export default RootLayout;
