@@ -1,4 +1,4 @@
-import { Product } from '@repo/models';
+import type { Product } from '@repo/models';
 
 export const products: Product[] = [
   {

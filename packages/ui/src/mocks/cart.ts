@@ -1,5 +1,5 @@
 import { CartItem } from '@repo/models';
-import { ById } from '@repo/models/types';
+import { ById } from '@repo/models';
 
 export const cartList: CartItem[] = [
   { id: 1, productId: 1, quantity: 20 },

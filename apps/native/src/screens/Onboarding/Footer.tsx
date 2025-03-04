@@ -10,7 +10,7 @@ import { ScreenNames } from '@repo/constants';
 import { OnboardingStackParamList } from '@repo/constants';
 
 // Models
-import { Slide } from '@repo/models';
+import type { Slide } from '@repo/models';
 
 // Components
 import { Button, colors } from '@repo/ui';

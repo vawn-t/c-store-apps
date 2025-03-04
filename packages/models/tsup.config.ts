@@ -1,7 +1,7 @@
 import { defineConfig, Options } from 'tsup';
 
 export default defineConfig((options: Options) => ({
-  entry: ['src/models/index.ts', 'src/types/index.ts'],
+  entry: ['src/index.ts'],
   banner: {
     js: "'use client'",
   },
@@ -9,5 +9,6 @@ export default defineConfig((options: Options) => ({
   format: ['cjs', 'esm'],
   external: ['react'],
   dts: true,
+  target: 'es2020',
   ...options,
 }));

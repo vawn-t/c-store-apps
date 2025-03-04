@@ -1,7 +1,7 @@
 import { StateCreator } from 'zustand';
 
 import { Product } from '@repo/models';
-import { ById } from '@repo/models/types';
+import { ById } from '@repo/models';
 import { createById } from '@repo/utils';
 
 type State = {

@@ -14,7 +14,7 @@ import { SizeType } from '@interfaces';
 
 // Styles
 import styles from './styles';
-import { RootStackParamList } from '@repo/constants';
+import type { RootStackParamList } from '@repo/constants';
 
 interface IProps {
   isDarkText?: boolean;

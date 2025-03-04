@@ -5,7 +5,7 @@ import { FlatList } from 'react-native';
 import Item from './Item';
 
 // Models
-import { Product } from '@repo/models';
+import type { Product } from '@repo/models';
 
 // Utils
 import { areEqual } from '@repo/utils';

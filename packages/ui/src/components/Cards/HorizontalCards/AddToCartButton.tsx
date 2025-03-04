@@ -43,7 +43,7 @@ const AddToCartButton = ({ productId }: IProps) => {
 
   const [quantity, setQuantity] = useState<number>(cartItem?.quantity || 1);
 
-  const debouncedQuantity = useDebounce<number>(quantity);
+  const debouncedQuantity = useDebounce(quantity);
 
   const isMounted = useRef(false);
 

@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 // Models
-import { Slide as SlideModel } from '@repo/models';
+import type { Slide as SlideModel } from '@repo/models';
 
 // Components
 import { Typography } from '@repo/ui';
@@ -36,18 +36,21 @@ const Slide = ({ item, index }: IProps) => {
     >
       <View style={[styles.content, { height: height * 0.7 }]}>
         <Typography
-          text={item.title}
           fontWeight={FontWeight.Bold}
           size={SizeType.Xxl}
           style={styles.title}
           variant={TypoVariant.Paragraph2}
-        />
+        >
+          {item.title}
+        </Typography>
         {index === 0 && (
           <View style={styles.imageWrapper}>
             <Image source={Images.logo} />
           </View>
         )}
-        <Typography text={item.description || ''} style={styles.description} />
+        <Typography style={styles.description}>
+          text={item.description || ''}
+        </Typography>
       </View>
     </ImageBackground>
   );

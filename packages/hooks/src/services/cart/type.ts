@@ -1,4 +1,4 @@
-import { ICartItem } from '@repo/models';
+import type { ICartItem } from '@repo/models';
 
 type CartItemsResponse = { cartItems: ICartItem[] };
 

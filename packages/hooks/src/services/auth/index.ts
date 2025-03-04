@@ -6,7 +6,7 @@ import { POST } from '@services/clientRequest';
 
 // Types
 import { LoginResponse, SignUpResponse } from './type';
-import { LoginFormData, SignUpFormData } from '@repo/models/types';
+import type { LoginFormData, SignUpFormData } from '@repo/models';
 import { getValueFor } from '@repo/utils';
 
 export const login = (formData: LoginFormData) =>

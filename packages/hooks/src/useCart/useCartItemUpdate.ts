@@ -10,6 +10,7 @@ import { useStore } from '@repo/stores';
 
 // Models
 import { CartItem } from '@repo/models';
+// import type { ICartItem } from '@repo/models';
 
 const useCartItemUpdate = () => {
   const updateCartItemQuantity = useStore.use.updateCartItemQuantity();

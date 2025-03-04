@@ -6,7 +6,7 @@ import { verifyCode } from '@services/auth';
 import { VerifyCodeError } from '@services/auth/type';
 
 // Types
-import { VerifyCodePayload } from '@repo/models/types';
+import type { VerifyCodePayload } from '@repo/models';
 
 // Stores
 import { useStore } from '@repo/stores';

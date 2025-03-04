@@ -1,4 +1,4 @@
-import { Category } from '@repo/models';
+import type { Category } from '@repo/models';
 
 type CategoryListResponse = { categories: Category[] };
 

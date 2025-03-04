@@ -7,7 +7,7 @@ import { Switch, TextInput, View } from 'react-native';
 import { Button, EmailIcon, Input, LockIcon, Typography } from '@components';
 
 // Types
-import { LoginFormData } from '@repo/models/types';
+import { LoginFormData, LoginFormErrors } from '@repo/models';
 
 // Constants
 import { RootStackParamList, ScreenNames } from '@repo/constants';

@@ -8,7 +8,7 @@ import { ROUTES } from '@repo/constants';
 import { CartItemsResponse } from './type';
 
 // Models
-import { ICartItem } from '@repo/models';
+import type { ICartItem } from '@repo/models';
 
 export const getCartItemList = async () =>
   await GET<CartItemsResponse>(ROUTES.CART.GET_ALL);

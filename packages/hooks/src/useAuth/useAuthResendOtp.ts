@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { resendOtp } from '@services/auth';
 
 // Types
-import { ResendCodePayload } from '@repo/models/types';
+import type { ResendCodePayload } from '@repo/models';
 
 // Stores
 import { useStore } from '@repo/stores';

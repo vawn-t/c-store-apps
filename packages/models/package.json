@@ -1,13 +1,8 @@
 {
   "name": "@repo/models",
   "version": "0.0.0",
-  "files": [
-    "dist/**"
-  ],
-  "exports": {
-    ".": "./dist/models/index.js",
-    "./types": "./dist/types/index.js"
-  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

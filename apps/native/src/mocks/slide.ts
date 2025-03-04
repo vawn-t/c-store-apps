@@ -1,5 +1,5 @@
 import { Images } from '@assets/images';
-import { Slide } from '@repo/models';
+import type { Slide } from '@repo/models';
 
 export const slides: Slide[] = [
   {

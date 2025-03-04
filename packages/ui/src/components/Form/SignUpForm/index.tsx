@@ -5,7 +5,7 @@ import { TextInput, View } from 'react-native';
 import { Button, EmailIcon, Input, LockIcon, PhoneIcon } from '@components';
 
 // Types
-import { SignUpFormData, SignUpFormErrors } from '@repo/models/types';
+import { SignUpFormData, SignUpFormErrors } from '@repo/models';
 
 // Utils
 import { isDisableSubmitButton } from '@repo/utils';

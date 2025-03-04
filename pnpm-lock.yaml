@@ -32,6 +32,9 @@ importers:
       '@repo/models':
         specifier: workspace:*
         version: link:../../packages/models
+      '@repo/services':
+        specifier: workspace:*
+        version: link:../../packages/services
       '@repo/stores':
         specifier: workspace:*
         version: link:../../packages/stores

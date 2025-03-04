@@ -5,12 +5,12 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Toast from 'react-native-root-toast';
 
 // Types
-import {
+import type {
   LoginFormData,
   LoginFormErrors,
   SignUpFormData,
   SignUpFormErrors,
-} from '@repo/models/types';
+} from '@repo/models';
 
 // Stores
 import { useStore } from '@repo/stores';
