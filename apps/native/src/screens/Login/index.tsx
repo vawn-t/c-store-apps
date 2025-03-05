@@ -1,27 +1,28 @@
+import { useCallback } from 'react';
+import { useRouter } from 'expo-router';
+
 // Components
-import { LoginForm } from '@repo/ui';
+import { LoginForm, useToast } from '@repo/ui';
 
 // Layouts
 import { AuthLayout } from '@layouts';
 
 // Images
 import { Images } from '@assets/images';
-import Toast from 'react-native-root-toast';
-import { useRouter } from 'expo-router';
 import { APP_ROUTES, SUCCESS } from '@repo/constants';
-import { useCallback } from 'react';
 
 const Login = () => {
   const router = useRouter();
+  const toast = useToast();
 
   const handleSuccess = useCallback(() => {
-    Toast.show(SUCCESS.LOGIN);
+    toast.show(SUCCESS.LOGIN);
 
     router.navigate(APP_ROUTES.POST_AUTH_STACK);
   }, []);
 
   const handleError = useCallback((message: string) => {
-    Toast.show(message);
+    toast.show({ message, type: 'error' });
   }, []);
 
   const handleNavigateToForgotPassword = useCallback(() => {

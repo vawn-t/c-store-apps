@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import Toast from 'react-native-root-toast';
 
 // Components
-import { Categories, FeaturedProducts, SearchBar } from '@repo/ui';
+import { Categories, FeaturedProducts, SearchBar, useToast } from '@repo/ui';
 import { Banners } from '@components';
 
 // Themes
@@ -31,6 +30,8 @@ const Home = () => {
   const setProductUnits = useStore.use.setProductUnits();
   const setCartItems = useStore.use.setCartItems();
 
+  const toast = useToast();
+
   useEffect(() => {
     const isProductUnitListPending = !productUnits;
     const isCartItemListPending = !cartItemList;
@@ -51,7 +52,7 @@ const Home = () => {
       setProductUnits(productUnits);
       setCartItems(cartItemList);
     } else if (errors?.length) {
-      Toast.show(errors[0]!.message);
+      toast.show(errors[0]!.message);
     }
   }, [productUnits, cartItemList, productUnitListError]);
 

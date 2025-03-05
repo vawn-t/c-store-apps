@@ -4,13 +4,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 // Components
-import { DeleteIcon } from '@components';
 
 // Hooks
 import { useCartItemDelete } from '@repo/hooks';
 
 // Styles
 import styles from './styles';
+import { DeleteIcon } from '@repo/ui';
 
 interface IProps {
   cartItemId: number;

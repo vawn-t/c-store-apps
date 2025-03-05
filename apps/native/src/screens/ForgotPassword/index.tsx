@@ -1,31 +1,35 @@
+import { useCallback } from 'react';
+import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Components
-import { ForgotPasswordForm } from '@repo/ui';
+import { ForgotPasswordForm, useToast } from '@repo/ui';
 
 // Layouts
 import { VerificationLayout } from '@layouts';
 
 // Styles
 import styles from './styles';
-import { useCallback } from 'react';
-import { useRouter } from 'expo-router';
-import Toast from 'react-native-root-toast';
 import { APP_ROUTES, SUCCESS } from '@repo/constants';
 
 const ForgotPassword = () => {
+  const toast = useToast();
   const router = useRouter();
 
   const handleSuccess = useCallback((message: string) => {
-    Toast.show(SUCCESS.passwordSentToEmail(message));
+    toast.show(SUCCESS.passwordSentToEmail(message));
 
     router.navigate(APP_ROUTES.AUTH_LOGIN);
+  }, []);
+
+  const handleError = useCallback((message: string) => {
+    toast.show({ message, type: 'error' });
   }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <VerificationLayout title="Forgot Password" description="Coming soon!">
-        <ForgotPasswordForm onSuccess={handleSuccess} onError={Toast.show} />
+        <ForgotPasswordForm onSuccess={handleSuccess} onError={handleError} />
       </VerificationLayout>
     </SafeAreaView>
   );

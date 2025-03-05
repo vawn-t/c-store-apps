@@ -1,13 +1,12 @@
 import { useCallback } from 'react';
 import { useRouter } from 'expo-router';
-import Toast from 'react-native-root-toast';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Constants
 import { APP_ROUTES, SUCCESS } from '@repo/constants';
 
 // Components
-import { OtpForm } from '@repo/ui';
+import { OtpForm, useToast } from '@repo/ui';
 
 // Layouts
 import { VerificationLayout } from '@layouts';
@@ -20,20 +19,21 @@ import styles from './styles';
 
 const VerifyNumber = () => {
   const router = useRouter();
+  const toast = useToast();
 
   const handleSuccess = useCallback(() => {
-    Toast.show(SUCCESS.SIGNUP.VERIFIED);
+    toast.show(SUCCESS.SIGNUP.VERIFIED);
     router.navigate(APP_ROUTES.AUTH_LOGIN);
   }, []);
 
   const handleError = useCallback((error?: VerifyCodeError) => {
     if (error?.errors.length) {
-      Toast.show(error.errors[0].msg);
+      toast.show(error.errors[0].msg);
     }
   }, []);
 
   const handleResendOTPResult = useCallback((message: string) => {
-    Toast.show(message);
+    toast.show(message);
   }, []);
 
   return (
