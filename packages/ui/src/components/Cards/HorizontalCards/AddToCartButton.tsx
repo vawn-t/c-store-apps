@@ -4,7 +4,7 @@ import { TouchableWithoutFeedback, View, TouchableOpacity } from 'react-native';
 // Components
 import { AddIcon, CartTinyIcon, MinusIcon } from '@components';
 import { Typography } from '@components';
-import Toast from 'react-native-root-toast';
+// import Toast from 'react-native-root-toast';
 
 // Interfaces
 
@@ -43,7 +43,7 @@ const AddToCartButton = ({ productId }: IProps) => {
 
   const [quantity, setQuantity] = useState<number>(cartItem?.quantity || 1);
 
-  const debouncedQuantity = useDebounce<number>(quantity);
+  const debouncedQuantity = useDebounce(quantity);
 
   const isMounted = useRef(false);
 
@@ -77,36 +77,36 @@ const AddToCartButton = ({ productId }: IProps) => {
 
   useEffect(() => {
     if (isAddCartItemSuccess) {
-      Toast.show(SUCCESS.ADD_TO_CART);
+      // Toast.show(SUCCESS.ADD_TO_CART);
     } else if (isAddCartItemError) {
       if (cartItemError.response?.data.errors?.length) {
-        Toast.show(cartItemError.response.data.errors[0].msg);
+        // Toast.show(cartItemError.response.data.errors[0].msg);
       } else {
-        Toast.show(cartItemError.message);
+        // Toast.show(cartItemError.message);
       }
     }
   }, [isAddCartItemSuccess, isAddCartItemError, cartItemError]);
 
   useEffect(() => {
     if (isDeleteCartItemSuccess) {
-      Toast.show(SUCCESS.DELETE_CART_ITEM);
+      // Toast.show(SUCCESS.DELETE_CART_ITEM);
     } else if (isDeleteCartItemError) {
       if (deleteCartItemError.response?.data.errors?.length) {
-        Toast.show(deleteCartItemError.response.data.errors[0].msg);
+        // Toast.show(deleteCartItemError.response.data.errors[0].msg);
       } else {
-        Toast.show(deleteCartItemError.message);
+        // Toast.show(deleteCartItemError.message);
       }
     }
   }, [isDeleteCartItemSuccess, isDeleteCartItemError, deleteCartItemError]);
 
   useEffect(() => {
     if (isUpdateCartItemSuccess) {
-      Toast.show(SUCCESS.UPDATE_CART_ITEM);
+      // Toast.show(SUCCESS.UPDATE_CART_ITEM);
     } else if (isUpdateCartItemError) {
       if (updateCartItemError.response?.data.errors?.length) {
-        Toast.show(updateCartItemError.response.data.errors[0].msg);
+        // Toast.show(updateCartItemError.response.data.errors[0].msg);
       } else {
-        Toast.show(updateCartItemError.message);
+        // Toast.show(updateCartItemError.message);
       }
     }
   }, [isUpdateCartItemSuccess, isUpdateCartItemError, updateCartItemError]);

@@ -16,7 +16,7 @@ import {
   ValidateForgotForm,
   ValidateLoginForm,
   ValidateSignUpForm,
-} from '@repo/models/types';
+} from '@repo/models';
 
 const isDisableSubmitButton = (formData: SignUpFormData | LoginFormData) =>
   Object.values(formData).some((value) => value === '');

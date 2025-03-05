@@ -4,10 +4,9 @@
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
     "strict": true,
-    "moduleResolution": "node16",
-    "module": "Node16",
     "baseUrl": ".",
     "paths": {
+      "@assets/*": ["src/assets/index.ts"],
       "@components/*": ["src/components/*"],
       "@components": ["src/components/index.ts"],
       "@themes": ["./src/themes/index.ts"],

@@ -15,7 +15,6 @@ import styles from './styles';
 
 interface IProps extends React.ComponentProps<typeof TouchableHighlight> {
   icon?: JSX.Element;
-  onPress: () => void;
 }
 
 const Button = ({

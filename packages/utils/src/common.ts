@@ -1,5 +1,5 @@
 // Types
-import { ById } from '@repo/models/types';
+import { ById } from '@repo/models';
 
 export const removeById = <T>(byId: ById<T>, id: number) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

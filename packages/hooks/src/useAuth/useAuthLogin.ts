@@ -2,7 +2,7 @@ import { AxiosError } from 'axios';
 import { useMutation } from '@tanstack/react-query';
 
 // Types
-import { LoginFormData } from '@repo/models/types';
+import type { LoginFormData } from '@repo/models';
 import { LoginError } from '@services/auth/type';
 
 // Services

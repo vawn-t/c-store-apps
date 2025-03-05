@@ -1,16 +1,11 @@
 import { useCallback, useRef, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { Switch, TextInput, View } from 'react-native';
 
 // Components
 import { Button, EmailIcon, Input, LockIcon, Typography } from '@components';
 
 // Types
-import { LoginFormData } from '@repo/models/types';
-
-// Constants
-import { RootStackParamList, ScreenNames } from '@repo/constants';
+import { LoginFormData } from '@repo/models';
 
 // Utils
 import { isDisableSubmitButton } from '@repo/utils';
@@ -22,7 +17,13 @@ import styles from './styles';
 import { useAuthenticator } from '@repo/hooks';
 import { FontWeight } from '@interfaces';
 
-const LoginForm = () => {
+interface Props {
+  onSuccess: () => void;
+  onError: (message: string) => void;
+  onForgotPassword: () => void;
+}
+
+const LoginForm = ({ onError, onSuccess, onForgotPassword }: Props) => {
   const [isSwitchEnabled, setIsEnabled] = useState(false);
 
   const [formData, setFormData] = useState<LoginFormData>({
@@ -38,17 +39,12 @@ const LoginForm = () => {
   const { isLoading, errors, login, clearEmailError, clearPasswordError } =
     useAuthenticator();
 
-  const navigation =
-    useNavigation<
-      NativeStackNavigationProp<RootStackParamList, ScreenNames.Login>
-    >();
-
   const handleLogin = useCallback(() => {
     emailRef.current?.blur();
     passwordRef.current?.blur();
 
-    login(formData);
-  }, [formData]);
+    login(formData, onSuccess, onError);
+  }, [formData, login, onError, onSuccess]);
 
   const handleFocusEmail = useCallback(() => {
     clearEmailError();
@@ -57,10 +53,6 @@ const LoginForm = () => {
   const handleFocusPassword = useCallback(() => {
     clearPasswordError();
   }, []);
-
-  const handleNavigateToForgotPassword = () => {
-    navigation.navigate(ScreenNames.ForgotPassword);
-  };
 
   const handleRememberPassword = useCallback(() => {
     setIsEnabled((previousState) => !previousState);
@@ -100,7 +92,7 @@ const LoginForm = () => {
 
         <Typography
           style={styles.forgotPassword}
-          onPress={handleNavigateToForgotPassword}
+          onPress={onForgotPassword}
           fontWeight={FontWeight.Medium}
         >
           Forgot Password?

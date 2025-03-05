@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 // Constants
-import { SECURE_STORE, SERVER_ERROR } from '@repo/constants';
-import { getValueFor } from '@repo/utils';
+import { SERVER_ERROR } from '@repo/constants';
+// import { getValueFor } from '@repo/utils';
 
 const defaultOptions = {
   baseURL: process.env.EXPO_PUBLIC_API_URL,
@@ -13,17 +13,17 @@ const defaultOptions = {
 
 const instance = axios.create(defaultOptions);
 
-instance.interceptors.request.use(
-  async (config) => {
-    const authToken = await getValueFor(SECURE_STORE.AUTH_TOKEN);
+// instance.interceptors.request.use(
+//   async (config) => {
+//     const authToken = await getValueFor(SECURE_STORE.AUTH_TOKEN);
 
-    config.headers.Authorization = authToken || '';
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+//     config.headers.Authorization = authToken || '';
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error);
+//   }
+// );
 
 instance.interceptors.response.use(
   (response) => {

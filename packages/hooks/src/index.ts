@@ -1,4 +1,5 @@
 export * from './useDebounce';
+export * from './services';
 export { default as useAuthenticator } from './useAuthenticator';
 
 export { default as useAuthLogin } from './useAuth/useAuthLogin';

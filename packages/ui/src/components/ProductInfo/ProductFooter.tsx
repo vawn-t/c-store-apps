@@ -1,6 +1,6 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import Toast from 'react-native-root-toast';
+// import Toast from 'react-native-root-toast';
 
 // Components
 import { Button, CartIcon, Typography } from '@components';
@@ -57,12 +57,12 @@ const ProductFooter = ({ productId: productId }: IProps) => {
 
   useEffect(() => {
     if (isAddCartItemSuccess) {
-      Toast.show(SUCCESS.ADD_TO_CART);
+      // Toast.show(SUCCESS.ADD_TO_CART);
     } else if (isAddCartItemError) {
       if (cartItemError.response?.data.errors?.length) {
-        Toast.show(cartItemError.response.data.errors[0].msg);
+        // Toast.show(cartItemError.response.data.errors[0].msg);
       } else {
-        Toast.show(cartItemError.message);
+        // Toast.show(cartItemError.message);
       }
     }
   }, [isAddCartItemSuccess, isAddCartItemError, cartItemError]);
@@ -83,12 +83,12 @@ const ProductFooter = ({ productId: productId }: IProps) => {
 
   useEffect(() => {
     if (isCartItemUpdated) {
-      Toast.show(SUCCESS.UPDATE_CART_ITEM);
+      // Toast.show(SUCCESS.UPDATE_CART_ITEM);
     } else if (isUpdateCartItemError) {
       if (updateCartItemError.response?.data.errors?.length) {
-        Toast.show(updateCartItemError.response.data.errors[0].msg);
+        // Toast.show(updateCartItemError.response.data.errors[0].msg);
       } else {
-        Toast.show(updateCartItemError.message);
+        // Toast.show(updateCartItemError.message);
       }
     }
   }, [isCartItemUpdated, isUpdateCartItemError, updateCartItemError]);

@@ -1,0 +1,32 @@
+import { Link } from 'expo-router';
+
+// Layouts
+import { AuthLayout } from '@layouts';
+
+// Types
+
+// Constants
+import { APP_ROUTES } from '@repo/constants';
+
+// Components
+import { Button, UserIcon } from '@repo/ui';
+
+// Images
+import { Images } from '@assets/images';
+
+const Welcome = () => {
+  return (
+    <AuthLayout
+      description="Lorem ipsum dolorr sit amet, consetetur 
+    sadipscing elitr, sed diam nonumy"
+      title="Welcome"
+      image={Images.firstTimeLogin}
+    >
+      <Link href={APP_ROUTES.AUTH_SIGNUP} asChild>
+        <Button icon={<UserIcon />}>Create an account</Button>
+      </Link>
+    </AuthLayout>
+  );
+};
+
+export default Welcome;

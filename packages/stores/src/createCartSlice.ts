@@ -1,6 +1,6 @@
 import { StateCreator } from 'zustand';
 
-import { ById } from '@repo/models/types';
+import { ById } from '@repo/models';
 import { CartItem } from '@repo/models';
 import { createById, removeById } from '@repo/utils';
 import { calculateTotalCost } from './createCartSlice.utils';

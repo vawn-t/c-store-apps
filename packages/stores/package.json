@@ -21,7 +21,6 @@
     "@repo/constants": "workspace:*",
     "@repo/models": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@tanstack/react-query": "5.0.5",
     "zustand": "4.4.4"
   }
 }

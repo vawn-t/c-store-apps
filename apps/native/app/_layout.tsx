@@ -1,11 +1,16 @@
 import { useEffect } from 'react';
-import { Stack } from 'expo-router';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
+import { Stack } from 'expo-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import LogRocket from '@logrocket/react-native';
-import * as Updates from 'expo-updates';
 
-const LOG_ROCKET_APP_ID = process.env.EXPO_PUBLIC_LOG_ROCKET;
+import { LOG_ROCKET_APP_ID } from '@repo/constants';
+import { GlobalLoader } from '@repo/ui';
+import { useStore } from '@repo/stores';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -16,13 +21,24 @@ SplashScreen.setOptions({
   fade: true,
 });
 
-const AppLayout = () => {
+const RootLayout = () => {
   const [loaded, error] = useFonts({
     'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
     'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
     'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
     'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
   });
+
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        retry: 3,
+      },
+    },
+  });
+
+  const isLoading = useStore.use.isLoading();
 
   useEffect(() => {
     if (loaded) {
@@ -40,7 +56,27 @@ const AppLayout = () => {
     LogRocket.init(LOG_ROCKET_APP_ID);
   }, []);
 
-  return <Stack />;
+  if (!loaded) {
+    return null;
+  }
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RootSiblingParent>
+        <SafeAreaProvider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <StatusBar style="auto" />
+
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(post-auth)" />
+          </Stack>
+
+          {isLoading && <GlobalLoader />}
+        </SafeAreaProvider>
+      </RootSiblingParent>
+    </QueryClientProvider>
+  );
 };
 
-export default AppLayout;
+export default RootLayout;

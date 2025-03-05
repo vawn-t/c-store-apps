@@ -6,7 +6,7 @@ import { POST } from '@services/clientRequest';
 
 // Types
 import { LoginResponse, SignUpResponse } from './type';
-import { LoginFormData, SignUpFormData } from '@repo/models/types';
+import type { LoginFormData, SignUpFormData } from '@repo/models';
 import { getValueFor } from '@repo/utils';
 
 export const login = (formData: LoginFormData) =>
@@ -32,5 +32,12 @@ export const verifyCode = async (code: string) => {
 export const resetPassword = async (email: string) =>
   await POST(ROUTES.AUTH.RESET_PASSWORD, { email });
 
-export const resendOtp = async (phone: string) =>
-  await POST(ROUTES.AUTH.RESEND_OTP, { phone });
+export const resendOtp = async (phone: string) => {
+  const otpToken = await getValueFor(SECURE_STORE.OTP_TOKEN);
+
+  return await POST(
+    ROUTES.AUTH.RESEND_OTP,
+    { phone },
+    { headers: { Authorization: otpToken } }
+  );
+};

@@ -1,13 +1,10 @@
 import { ImageBackground } from 'react-native';
 
 // Models
-import { Slide } from '@repo/models';
+import type { Slide } from '@repo/models';
 
 // Components
-import { Typography } from '@components';
-
-// Types
-import { FontWeight, SizeType, TypoVariant } from '@interfaces';
+import { FontWeight, SizeType, TypoVariant, Typography } from '@repo/ui';
 
 // Styles
 import styles from './styles';

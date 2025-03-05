@@ -3,7 +3,7 @@ import { Alert, View } from 'react-native';
 
 // Components
 import VerticalCards from '../Cards/VerticalCards';
-import { Typography, Button } from '@components';
+import { Typography, Button } from '@components/universals';
 
 // Types
 import { TypoVariant, SizeType, FontWeight } from '@interfaces';
