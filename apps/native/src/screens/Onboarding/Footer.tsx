@@ -1,21 +1,15 @@
-import { useCallback, memo } from 'react';
+import { memo } from 'react';
 import { View, useWindowDimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Link } from 'expo-router';
 
 // Constants
-import { ScreenNames } from '@repo/constants';
-
-// Types
-import { OnboardingStackParamList } from '@repo/constants';
+import { APP_ROUTES } from '@repo/constants';
 
 // Models
 import type { Slide } from '@repo/models';
 
 // Components
 import { Button, colors } from '@repo/ui';
-
-// Themes
 
 // Utils
 import { areEqual } from '@repo/utils';
@@ -30,17 +24,6 @@ interface IProps {
 
 const Footer = ({ slides, activeSlideIndex }: IProps) => {
   const { width } = useWindowDimensions();
-  const navigation =
-    useNavigation<
-      NativeStackNavigationProp<
-        OnboardingStackParamList,
-        ScreenNames.Onboarding
-      >
-    >();
-
-  const handleNext = useCallback((): void => {
-    navigation.navigate(ScreenNames.FirstTimeLogin);
-  }, [navigation]);
 
   return (
     <View style={[styles.footerContainer, { width: width }]}>
@@ -60,7 +43,9 @@ const Footer = ({ slides, activeSlideIndex }: IProps) => {
           />
         ))}
       </View>
-      <Button onPress={handleNext}>Next</Button>
+      <Link href={APP_ROUTES.AUTH_STACK} asChild>
+        <Button>Next</Button>
+      </Link>
     </View>
   );
 };

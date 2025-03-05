@@ -10,21 +10,14 @@ import { FontWeight, SizeType, TypoVariant } from '@repo/ui';
 import styles from './styles';
 
 interface IProps {
-  header: string;
   title: string;
   description: string;
-  FormComponent: React.ComponentType;
+  children?: React.ReactNode;
 }
 
-const VerificationLayout = ({
-  description,
-  FormComponent,
-  header,
-  title,
-}: IProps) => {
+const VerificationLayout = ({ description, children, title }: IProps) => {
   return (
     <>
-      <Header isDarkText title={header} />
       <View style={styles.main}>
         <View style={styles.content}>
           <Typography
@@ -37,9 +30,7 @@ const VerificationLayout = ({
 
           <Typography style={styles.description}>{description}</Typography>
         </View>
-        <View>
-          <FormComponent />
-        </View>
+        <View>{children}</View>
       </View>
     </>
   );

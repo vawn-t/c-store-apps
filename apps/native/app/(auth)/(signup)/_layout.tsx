@@ -1,13 +1,8 @@
-import { Header } from '@repo/ui';
+import { colors, Header } from '@repo/ui';
 import { Stack, useRouter } from 'expo-router';
-import { useCallback } from 'react';
 
 const SignUpLayout = () => {
   const router = useRouter();
-
-  const handleGoBack = useCallback(() => {
-    router.canGoBack() && router.back();
-  }, []);
 
   return (
     <Stack
@@ -15,8 +10,22 @@ const SignUpLayout = () => {
         headerTransparent: true,
       }}
     >
-      <Stack.Screen name="login" />
-      <Stack.Screen name="verify-code" />
+      <Stack.Screen
+        name="index"
+        options={{
+          title: 'Sign Up',
+          headerTitleStyle: { color: colors.text.light },
+          header: Header,
+        }}
+      />
+      <Stack.Screen
+        name="verify-code"
+        options={{
+          title: 'Verify Number',
+          headerTitleStyle: { color: colors.text.dark },
+          header: Header,
+        }}
+      />
     </Stack>
   );
 };

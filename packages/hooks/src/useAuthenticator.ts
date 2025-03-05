@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Toast from 'react-native-root-toast';
@@ -19,12 +19,7 @@ import { useStore } from '@repo/stores';
 import useAuthLogin from './useAuth/useAuthLogin';
 
 // Constants
-import {
-  RootStackParamList,
-  SECURE_STORE,
-  SUCCESS,
-  ScreenNames,
-} from '@repo/constants';
+import { RootStackParamList, SECURE_STORE, ScreenNames } from '@repo/constants';
 
 // Utils
 import { save, validateLoginForm, validateSignUpForm } from '@repo/utils';
@@ -32,7 +27,6 @@ import useAuthSignUp from './useAuth/useAuthSignUp';
 
 const useAuthenticator = () => {
   const [errors, setErrors] = useState<SignUpFormErrors | LoginFormErrors>({});
-  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Stores
   const setPhone = useStore.use.setPhone();
@@ -44,104 +38,74 @@ const useAuthenticator = () => {
       NativeStackNavigationProp<RootStackParamList, ScreenNames.Login>
     >();
 
-  const {
-    mutateAsync: loginAsync,
-    data: loginData,
-    isPending: isLoginPending,
-    isSuccess: isLoginSuccess,
-    isError: isLoginError,
-    error: loginError,
-  } = useAuthLogin();
+  const { mutateAsync: loginAsync, isPending: isLoginPending } = useAuthLogin();
 
-  const {
-    mutateAsync: signUpAsync,
-    data: signUpData,
-    isPending: isSignUpPending,
-    isSuccess: isSignUpSuccess,
-    isError: isSignUpError,
-    error: signUpError,
-    variables: signUpVariables,
-  } = useAuthSignUp();
-
-  useEffect(() => {
-    setIsLoading(isLoginPending || isSignUpPending);
-
-    if (isLoginSuccess && loginData?.token) {
-      Toast.show(SUCCESS.LOGIN);
-
-      // save auth token to secure store
-      save(SECURE_STORE.AUTH_TOKEN, loginData.token);
-
-      axios.defaults.headers.common['Authorization'] = loginData.token;
-
-      navigation.navigate(ScreenNames.HomeStack);
-
-      disableLoading();
-    } else if (isLoginError) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-      axios.defaults.headers.common['Authorization'];
-
-      if (loginError.response?.data.errors?.length) {
-        Toast.show(loginError.response.data.errors[0].msg);
-      } else {
-        Toast.show(loginError.message);
-      }
-
-      disableLoading();
-    }
-
-    if (isSignUpSuccess && signUpData) {
-      Toast.show(SUCCESS.sentCodeToEmail(signUpVariables.email));
-
-      // save otp token to secure store
-      save(SECURE_STORE.OTP_TOKEN, signUpData.token);
-
-      disableLoading();
-
-      navigation.navigate(ScreenNames.VerifyNumber);
-    } else if (isSignUpError) {
-      axios.defaults.headers.common['Authorization'] = '';
-
-      if (signUpError.response?.data.errors?.length) {
-        Toast.show(signUpError.response?.data.errors[0].msg);
-      } else {
-        Toast.show(signUpError.message);
-      }
-
-      disableLoading();
-    }
-  }, [
-    isSignUpPending,
-    isLoginPending,
-    isLoginSuccess,
-    isLoginError,
-    loginData,
-    isSignUpSuccess,
-    isSignUpError,
-    signUpData,
-  ]);
+  const { mutateAsync: signUpAsync, isPending: isSignUpPending } =
+    useAuthSignUp();
 
   const login = useCallback(
-    (formData: LoginFormData) => {
+    (
+      formData: LoginFormData,
+      onSuccess: () => void,
+      onError: (message: string) => void
+    ) => {
       const { errors, isFormValid } = validateLoginForm(formData);
 
       setErrors(errors);
 
       if (!isFormValid) {
         // Show the first error on Toast
-        Toast.show(Object.values(errors)[0] as string);
+        onError(Object.values(errors)[0] as string);
 
         return;
       }
 
-      loginAsync(formData);
+      loginAsync(formData, {
+        onSuccess: (data) => {
+          // save auth token to secure store
+          save(SECURE_STORE.AUTH_TOKEN, data.token);
+
+          axios.defaults.headers.common['Authorization'] = data.token;
+
+          navigation.navigate(ScreenNames.HomeStack);
+
+          disableLoading();
+
+          onSuccess();
+        },
+        onError: (error) => {
+          axios.defaults.headers.common['Authorization'] = '';
+
+          if (error.response?.data.errors?.length) {
+            onError(error.response.data.errors[0].msg);
+          } else {
+            onError(error.message);
+          }
+
+          disableLoading();
+        },
+      });
       enableLoading();
     },
     [loginAsync, validateLoginForm]
   );
 
+  /**
+   * Handles the sign-up process by validating the form data, showing errors if any,
+   * and calling the asynchronous sign-up function. Displays success or error messages
+   * using Toast notifications and manages loading state.
+   *
+   * @param {SignUpFormData} formData - The data from the sign-up form.
+   * @param {(message: string) => void} onSuccess - Callback function to be called on successful sign-up.
+   *
+   * @returns {void}
+   */
   const signUp = useCallback(
-    (formData: SignUpFormData) => {
+    (
+      formData: SignUpFormData,
+      onSuccess: (message: string) => void,
+      onError: (message: string) => void
+    ) => {
       const { errors, isFormValid } = validateSignUpForm(formData);
 
       setErrors(errors);
@@ -156,7 +120,29 @@ const useAuthenticator = () => {
 
       enableLoading();
 
-      signUpAsync(formData);
+      signUpAsync(formData, {
+        onSuccess: (data) => {
+          // save otp token to secure store
+          save(SECURE_STORE.OTP_TOKEN, data.token);
+
+          console.log('OTP_TOKEN', data.token);
+
+          disableLoading();
+
+          onSuccess(formData.email);
+        },
+        onError: (error) => {
+          axios.defaults.headers.common['Authorization'] = '';
+
+          if (error.response?.data.errors?.length) {
+            onError(error.response?.data.errors[0].msg);
+          } else {
+            onError(error.message);
+          }
+
+          disableLoading();
+        },
+      });
     },
     [signUpAsync, validateSignUpForm]
   );
@@ -189,7 +175,7 @@ const useAuthenticator = () => {
   }, []);
 
   return {
-    isLoading,
+    isLoading: isLoginPending || isSignUpPending,
     errors,
     login,
     signUp,

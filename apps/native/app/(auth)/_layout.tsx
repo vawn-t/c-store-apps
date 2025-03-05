@@ -1,13 +1,9 @@
-import { Header } from '@repo/ui';
 import { Stack, useRouter } from 'expo-router';
-import { useCallback } from 'react';
+
+import { colors, Header } from '@repo/ui';
 
 const AuthLayout = () => {
   const router = useRouter();
-
-  const handleGoBack = useCallback(() => {
-    router.canGoBack() && router.back();
-  }, []);
 
   return (
     <Stack
@@ -18,11 +14,28 @@ const AuthLayout = () => {
       <Stack.Screen
         name="index"
         options={{
-          header: () => <Header title="Welcome" onGoBack={handleGoBack} />,
+          title: 'Welcome',
+          headerTitleStyle: { color: colors.text.light },
+          header: Header,
         }}
       />
-      <Stack.Screen name="login" />
-      <Stack.Screen name="(signup)" />
+      <Stack.Screen
+        name="login"
+        options={{
+          title: 'Login',
+          headerTitleStyle: { color: colors.text.light },
+          header: Header,
+        }}
+      />
+      <Stack.Screen
+        name="forgot-password"
+        options={{
+          title: 'Forgot Password',
+          headerTitleStyle: { color: colors.text.dark },
+          header: Header,
+        }}
+      />
+      <Stack.Screen name="(signup)" options={{ headerShown: false }} />
     </Stack>
   );
 };

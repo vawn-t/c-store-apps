@@ -25,4 +25,13 @@ const ROUTES = {
   },
 };
 
-export { ROUTES };
+const APP_ROUTES = {
+  AUTH_STACK: '/(auth)',
+  AUTH_LOGIN: '/(auth)/login',
+  AUTH_SIGNUP: '/(auth)/(signup)',
+  AUTH_SIGNUP_VERIFY_CODE: '/(auth)/(signup)/verify-code',
+  AUTH_FORGOT_PASSWORD: '/(auth)/forgot-password',
+  POST_AUTH_STACK: '/(post-auth)',
+};
+
+export { ROUTES, APP_ROUTES };

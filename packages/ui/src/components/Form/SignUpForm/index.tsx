@@ -16,7 +16,12 @@ import { useAuthenticator } from '@repo/hooks';
 // Styles
 import styles from './styles';
 
-const SignUpForm = () => {
+interface Props {
+  onSuccess: (message: string) => void;
+  onError: (message: string) => void;
+}
+
+const SignUpForm = ({ onSuccess, onError }: Props) => {
   const [formData, setFormData] = useState<SignUpFormData>({
     email: '',
     phone: '',
@@ -42,7 +47,7 @@ const SignUpForm = () => {
     emailRef.current?.blur();
     passwordRef.current?.blur();
 
-    signUp(formData);
+    signUp(formData, onSuccess, onError);
   };
 
   const handleFocusEmail = useCallback(() => {

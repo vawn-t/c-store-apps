@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import * as SplashScreen from 'expo-splash-screen';
 import { useFonts } from 'expo-font';
-import LogRocket from '@logrocket/react-native';
-import { StackNavigation } from '@navigation';
-import { LOG_ROCKET_APP_ID } from '@repo/constants';
-import { Stack } from 'expo-router';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
+import { Stack } from 'expo-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import LogRocket from '@logrocket/react-native';
+
+import { LOG_ROCKET_APP_ID } from '@repo/constants';
+import { GlobalLoader } from '@repo/ui';
+import { useStore } from '@repo/stores';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -25,6 +29,17 @@ const RootLayout = () => {
     'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
   });
 
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        retry: 3,
+      },
+    },
+  });
+
+  const isLoading = useStore.use.isLoading();
+
   useEffect(() => {
     if (loaded) {
       LogRocket.identify(LOG_ROCKET_APP_ID, {
@@ -41,12 +56,26 @@ const RootLayout = () => {
     LogRocket.init(LOG_ROCKET_APP_ID);
   }, []);
 
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <Stack>
-      <Stack.Screen name="index" />
-      <Stack.Screen name="(auth)" />
-      <Stack.Screen name="(post-auth)" />
-    </Stack>
+    <QueryClientProvider client={queryClient}>
+      <RootSiblingParent>
+        <SafeAreaProvider>
+          <Stack screenOptions={{ headerShown: false }}>
+            <StatusBar style="auto" />
+
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(auth)" />
+            <Stack.Screen name="(post-auth)" />
+          </Stack>
+
+          {isLoading && <GlobalLoader />}
+        </SafeAreaProvider>
+      </RootSiblingParent>
+    </QueryClientProvider>
   );
 };
 

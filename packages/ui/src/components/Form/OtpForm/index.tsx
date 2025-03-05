@@ -1,8 +1,5 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
 import { TextInput, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-// import Toast from 'react-native-root-toast';
 
 // Themes
 import { colors } from '@themes';
@@ -13,46 +10,42 @@ import { Button, Typography } from '@components';
 // Types
 import { FontWeight, TypoVariant } from '@interfaces';
 
-// Constants
-import { RootStackParamList, SUCCESS, ScreenNames } from '@repo/constants';
-
 // Hooks
-import { useAuthVerifyCode, useAuthResendOtp } from '@repo/hooks';
+import {
+  useAuthVerifyCode,
+  useAuthResendOtp,
+  VerifyCodeError,
+} from '@repo/hooks';
 
 // Stores
 import { useStore } from '@repo/stores';
 
 // Styles
 import styles from './styles';
+import { SUCCESS } from '@repo/constants';
 
 interface IProps {
   length?: number;
+  onSuccess: () => void;
+  onError: (error?: VerifyCodeError) => void;
+  onResendOTPResult: (message: string) => void;
 }
 
-const OtpInput = ({ length = 6 }: IProps) => {
-  const navigation =
-    useNavigation<
-      NativeStackNavigationProp<RootStackParamList, ScreenNames.VerifyNumber>
-    >();
-
+const OtpForm = ({
+  length = 6,
+  onError,
+  onSuccess,
+  onResendOTPResult,
+}: IProps) => {
   const [otp, setOtp] = useState<string[]>(Array(length).fill(''));
 
   const inputRefs = useRef<TextInput[]>([]);
 
   // Queries
-  const {
-    mutateAsync: verifyCodeMutate,
-    isPending: isVerifyCodePending,
-    isSuccess: isVerifyCodeSuccess,
-    isError: isVerifyCodeError,
-    error: verifyCodeError,
-  } = useAuthVerifyCode();
+  const { mutateAsync: verifyCodeMutate, isPending: isVerifyCodePending } =
+    useAuthVerifyCode();
 
-  const {
-    mutateAsync: resendOtpMutate,
-    isSuccess: isResendOtpSuccess,
-    error: resendOtpError,
-  } = useAuthResendOtp();
+  const { mutateAsync: resendOtpMutate } = useAuthResendOtp();
 
   // Stores
   const phone = useStore.use.phone();
@@ -60,31 +53,15 @@ const OtpInput = ({ length = 6 }: IProps) => {
   const [isAllFieldsFilled, setIsAllFieldsFilled] = useState(false);
 
   useEffect(() => {
-    if (isVerifyCodeSuccess) {
-      // Toast.show(SUCCESS.SIGNUP.VERIFIED);
-
-      navigation.navigate(ScreenNames.Login);
-    } else if (isVerifyCodeError) {
-      if (verifyCodeError.response?.data.errors?.length) {
-        // Toast.show(verifyCodeError.response.data.errors[0].msg);
-      } else {
-        // Toast.show(verifyCodeError.message);
-      }
-    }
-  }, [isVerifyCodeSuccess, isVerifyCodeError, verifyCodeError]);
-
-  useEffect(() => {
-    if (isResendOtpSuccess) {
-      // Toast.show(SUCCESS.RESEND_OTP);
-    } else if (resendOtpError) {
-      // Toast.show(resendOtpError.message);
-    }
-  }, [isResendOtpSuccess, resendOtpError, resendOtpError]);
-
-  useEffect(() => {
     // Auto submit form when all fields are filled
     if (isAllFieldsFilled) {
-      verifyCodeMutate({ code: otp.join('') });
+      verifyCodeMutate(
+        { code: otp.join('') },
+        {
+          onSuccess,
+          onError: (error) => onError(error.response?.data),
+        }
+      );
     }
   }, [isAllFieldsFilled]);
 
@@ -125,7 +102,13 @@ const OtpInput = ({ length = 6 }: IProps) => {
 
   const handleResendCode = useCallback(() => {
     if (phone) {
-      resendOtpMutate({ phone });
+      resendOtpMutate(
+        { phone },
+        {
+          onSuccess: () => onResendOTPResult(SUCCESS.RESEND_OTP),
+          onError: (error) => onResendOTPResult(error.message),
+        }
+      );
     }
   }, [phone]);
 
@@ -177,4 +160,4 @@ const OtpInput = ({ length = 6 }: IProps) => {
   );
 };
 
-export default OtpInput;
+export default OtpForm;

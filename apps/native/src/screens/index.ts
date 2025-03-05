@@ -1,7 +1,7 @@
 export { default as Onboarding } from './Onboarding';
 export { default as Home } from './Home';
 export { default as ProductDetail } from './ProductDetail';
-export { default as FirstTimeLogin } from './FirstTimeLogin';
+export { default as Welcome } from './Welcome';
 export { default as Login } from './Login';
 export { default as SignUp } from './SignUp';
 export { default as Search } from './Search';

@@ -8,17 +8,27 @@ import { VerificationLayout } from '@layouts';
 
 // Styles
 import styles from './styles';
+import { useCallback } from 'react';
+import { useRouter } from 'expo-router';
+import Toast from 'react-native-root-toast';
+import { APP_ROUTES, SUCCESS } from '@repo/constants';
 
-const ForgotPassword = () => (
-  <SafeAreaView style={styles.container}>
-    <VerificationLayout
-      header="Forgot Password"
-      title="Forgot Password"
-      description="Lorem ipsum dolor sit amet, consetetur 
-			sadipscing elitr, sed diam nonumy"
-      FormComponent={ForgotPasswordForm}
-    />
-  </SafeAreaView>
-);
+const ForgotPassword = () => {
+  const router = useRouter();
+
+  const handleSuccess = useCallback((message: string) => {
+    Toast.show(SUCCESS.passwordSentToEmail(message));
+
+    router.navigate(APP_ROUTES.AUTH_LOGIN);
+  }, []);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <VerificationLayout title="Forgot Password" description="Coming soon!">
+        <ForgotPasswordForm onSuccess={handleSuccess} onError={Toast.show} />
+      </VerificationLayout>
+    </SafeAreaView>
+  );
+};
 
 export default ForgotPassword;

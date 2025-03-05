@@ -1,19 +1,5 @@
-import { Link } from 'expo-router';
-import { View, Text, StyleSheet } from 'react-native';
+import { Login } from '@screens';
 
 export default function LoginScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Login</Text>
-      <Link href="/(post-auth)">Post Auth</Link>
-    </View>
-  );
+  return <Login />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

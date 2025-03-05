@@ -1,4 +1,4 @@
-import { ReactNode, memo, useCallback } from 'react';
+import { ReactNode, memo } from 'react';
 import {
   ImageBackground,
   ImageSourcePropType,
@@ -7,26 +7,18 @@ import {
   useWindowDimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // Components
-import {
-  FontWeight,
-  SizeType,
-  Typography,
-  Header,
-  TypoVariant,
-} from '@repo/ui';
+import { FontWeight, SizeType, Typography, TypoVariant } from '@repo/ui';
 
 // Styles
 import styles from './styles';
 
 // Types
-import { RootStackParamList } from '@repo/constants';
+import { APP_ROUTES } from '@repo/constants';
 
 // Constants
-import { ScreenNames } from '@repo/constants';
+import { Link } from 'expo-router';
 
 interface IProps {
   children: ReactNode;
@@ -45,23 +37,10 @@ const AuthLayout = ({
 }: IProps) => {
   const { width } = useWindowDimensions();
 
-  const navigation =
-    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-
-  const handleNavigateTo = useCallback(() => {
-    if (isLogin) {
-      navigation.navigate(ScreenNames.SignUp);
-    } else {
-      navigation.navigate(ScreenNames.Login);
-    }
-  }, [navigation]);
-
   return (
     <ImageBackground source={image} resizeMode="cover" style={styles.container}>
       <KeyboardAvoidingView behavior="padding">
         <SafeAreaView style={[{ width }, styles.contentWrapper]}>
-          <Header title="Welcome" />
-
           <View style={styles.drawer}>
             <Typography
               fontWeight={FontWeight.SemiBold}
@@ -79,10 +58,14 @@ const AuthLayout = ({
               <Typography>{`${
                 isLogin ? `Don't have an account` : 'Already have an account'
               } ?`}</Typography>
-              <Typography
-                variant={TypoVariant.Paragraph2}
-                onPress={handleNavigateTo}
-              >{`${isLogin ? 'Sign up' : 'Login'}`}</Typography>
+              <Link
+                href={isLogin ? APP_ROUTES.AUTH_SIGNUP : APP_ROUTES.AUTH_LOGIN}
+                asChild
+              >
+                <Typography
+                  variant={TypoVariant.Paragraph2}
+                >{`${isLogin ? 'Sign up' : 'Login'}`}</Typography>
+              </Link>
             </View>
           </View>
         </SafeAreaView>

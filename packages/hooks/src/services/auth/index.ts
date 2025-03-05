@@ -32,5 +32,12 @@ export const verifyCode = async (code: string) => {
 export const resetPassword = async (email: string) =>
   await POST(ROUTES.AUTH.RESET_PASSWORD, { email });
 
-export const resendOtp = async (phone: string) =>
-  await POST(ROUTES.AUTH.RESEND_OTP, { phone });
+export const resendOtp = async (phone: string) => {
+  const otpToken = await getValueFor(SECURE_STORE.OTP_TOKEN);
+
+  return await POST(
+    ROUTES.AUTH.RESEND_OTP,
+    { phone },
+    { headers: { Authorization: otpToken } }
+  );
+};
