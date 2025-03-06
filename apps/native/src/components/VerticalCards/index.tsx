@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 
 // Components
 import Item from './Item';
-import SwipeToDelete from '@components/SwipeToDelete';
+import { SwipeToDelete } from '@components';
 
 // Utils
 import { areEqual } from '@repo/utils';

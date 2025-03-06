@@ -31,7 +31,9 @@ const APP_ROUTES = {
   AUTH_SIGNUP: '/(auth)/(signup)',
   AUTH_SIGNUP_VERIFY_CODE: '/(auth)/(signup)/verify-code',
   AUTH_FORGOT_PASSWORD: '/(auth)/forgot-password',
+
   POST_AUTH_STACK: '/(post-auth)',
+  POST_AUTH_SEARCH: '/(post-auth)/search',
 };
 
 export { ROUTES, APP_ROUTES };

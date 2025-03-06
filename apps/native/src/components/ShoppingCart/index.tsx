@@ -2,11 +2,16 @@ import { memo, useCallback } from 'react';
 import { Alert, View } from 'react-native';
 
 // Components
-import VerticalCards from '../Cards/VerticalCards';
-import { Typography, Button } from '@components/universals';
+import { VerticalCards } from '@components';
 
 // Types
-import { TypoVariant, SizeType, FontWeight } from '@interfaces';
+import {
+  TypoVariant,
+  SizeType,
+  FontWeight,
+  Typography,
+  Button,
+} from '@repo/ui';
 
 // Utils
 import { areEqual } from '@repo/utils';

@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import LogRocket from '@logrocket/react-native';
 
 import { LOG_ROCKET_APP_ID } from '@repo/constants';
-import { GlobalLoader } from '@repo/ui';
+import { GlobalLoader, ToastProvider } from '@repo/ui';
 import { useStore } from '@repo/stores';
 
 // Keep the splash screen visible while we fetch resources
@@ -64,15 +64,17 @@ const RootLayout = () => {
     <QueryClientProvider client={queryClient}>
       <RootSiblingParent>
         <SafeAreaProvider>
-          <Stack screenOptions={{ headerShown: false }}>
-            <StatusBar style="auto" />
+          <ToastProvider>
+            <Stack screenOptions={{ headerShown: false }}>
+              <StatusBar style="auto" />
 
-            <Stack.Screen name="index" />
-            <Stack.Screen name="(auth)" />
-            <Stack.Screen name="(post-auth)" />
-          </Stack>
+              <Stack.Screen name="index" />
+              <Stack.Screen name="(auth)" />
+              <Stack.Screen name="(post-auth)" />
+            </Stack>
 
-          {isLoading && <GlobalLoader />}
+            {isLoading && <GlobalLoader />}
+          </ToastProvider>
         </SafeAreaProvider>
       </RootSiblingParent>
     </QueryClientProvider>

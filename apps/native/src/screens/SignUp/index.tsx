@@ -1,24 +1,24 @@
 import { useCallback } from 'react';
 import { useRouter } from 'expo-router';
-import { SignUpForm } from '@repo/ui';
+import { SignUpForm, useToast } from '@repo/ui';
 import { AuthLayout } from '@layouts';
 
 // Images
 import { Images } from '@assets/images';
 import { APP_ROUTES, SUCCESS } from '@repo/constants';
-import Toast from 'react-native-root-toast';
 
 const SignUp = () => {
   const router = useRouter();
+  const toast = useToast();
 
   const handleSignUpSuccess = useCallback((message: string) => {
-    Toast.show(SUCCESS.sentCodeToEmail(message));
+    toast.show(SUCCESS.sentCodeToEmail(message));
 
     router.navigate(APP_ROUTES.AUTH_SIGNUP_VERIFY_CODE);
   }, []);
 
   const handleSignUpError = useCallback((message: string) => {
-    Toast.show(message);
+    toast.show(message);
   }, []);
 
   return (

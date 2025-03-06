@@ -7,10 +7,15 @@ import {
 } from 'react-native';
 
 // Components
-import { LoadingIndicator, Typography, AddIcon, MinusIcon } from '@components';
-
-// Types
-import { FontWeight, SizeType, TypoVariant } from '@interfaces';
+import {
+  FontWeight,
+  SizeType,
+  TypoVariant,
+  LoadingIndicator,
+  Typography,
+  AddIcon,
+  MinusIcon,
+} from '@repo/ui';
 
 // Stores
 import { useStore } from '@repo/stores';

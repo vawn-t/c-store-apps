@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Toast from 'react-native-root-toast';
 
 // Types
 import type {
@@ -112,7 +111,7 @@ const useAuthenticator = () => {
 
       if (!isFormValid) {
         // Show the first error on Toast
-        Toast.show(Object.values(errors)[0] as string);
+        console.error(Object.values(errors)[0] as string);
         return;
       }
 
