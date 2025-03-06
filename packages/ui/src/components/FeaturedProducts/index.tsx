@@ -21,7 +21,11 @@ import { useStore } from '@repo/stores';
 // Styles
 import styles from './styles';
 
-const FeaturedProducts = () => {
+interface Props {
+  onNavigateToDetails: () => void;
+}
+
+const FeaturedProducts = ({ onNavigateToDetails }: Props) => {
   const { data, isSuccess, isPending } = useProductList();
 
   // Stores
@@ -53,7 +57,10 @@ const FeaturedProducts = () => {
       {isPending ? (
         <LoadingIndicator />
       ) : (
-        <HorizontalCards products={products} />
+        <HorizontalCards
+          products={products}
+          onNavigateToDetails={onNavigateToDetails}
+        />
       )}
     </>
   );

@@ -1,4 +1,3 @@
-import { RouteProp, useRoute } from '@react-navigation/native';
 import { Image, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -18,21 +17,15 @@ import { useProductDetail } from '@repo/hooks';
 // Styles
 import styles from './styles';
 
-type ProductDetailScreenRouteProp = RouteProp<
-  RootStackParamList,
-  ScreenNames.ProductDetail
->;
-
 const ProductDetail = () => {
-  const route = useRoute<ProductDetailScreenRouteProp>();
-
-  const { data } = useProductDetail(route.params.id);
+  const paramId = 1;
+  const { data } = useProductDetail(paramId);
 
   return (
     <View style={styles.background}>
       <SafeAreaView edges={['left', 'right', 'top']} style={styles.container}>
         <View style={styles.circle} />
-        <Header isDarkText />
+
         {!data ? (
           <LoadingIndicator />
         ) : (

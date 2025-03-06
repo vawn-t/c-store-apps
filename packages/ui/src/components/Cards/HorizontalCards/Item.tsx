@@ -5,8 +5,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // Components
 import AddToCartButton from './AddToCartButton';
@@ -14,9 +12,6 @@ import { Typography, HeartFillIcon, HeartIcon } from '@components';
 
 // Types
 import { SizeType, TypoVariant, FontWeight } from '@interfaces';
-
-// Constants
-import { RootStackParamList, ScreenNames } from '@repo/constants';
 
 // Stores
 import { useStore } from '@repo/stores';
@@ -30,31 +25,30 @@ interface IProp {
   productUnitId: number;
   image: string;
   price: number;
+  onNavigateToDetails: () => void;
 }
 
-const Item = ({ id, name, productUnitId, image, price }: IProp) => {
+const Item = ({
+  id,
+  name,
+  productUnitId,
+  image,
+  price,
+  onNavigateToDetails,
+}: IProp) => {
   const [favorite, setFavorite] = useState(false);
 
   const handleToggleFavorite = useCallback(() => {
     setFavorite((prev) => !prev);
   }, []);
 
-  const navigation =
-    useNavigation<
-      NativeStackNavigationProp<RootStackParamList, ScreenNames.HomeStack>
-    >();
-
   // Stores
   const getProductUnitNameById = useStore.use.getProductUnitNameById();
-
-  const handleNavigateToProductDetail = () => {
-    navigation.navigate(ScreenNames.ProductDetail, { id });
-  };
 
   return (
     <View style={styles.itemWrapper}>
       <View style={styles.top}>
-        <TouchableWithoutFeedback onPress={handleNavigateToProductDetail}>
+        <TouchableWithoutFeedback onPress={onNavigateToDetails}>
           <View style={styles.content}>
             <View style={styles.circle} />
             <Image source={{ uri: image }} style={styles.image} />

@@ -10,7 +10,7 @@ import { VerificationLayout } from '@layouts';
 
 // Styles
 import styles from './styles';
-import { APP_ROUTES, SUCCESS } from '@repo/constants';
+import { ALERT, APP_ROUTES, SUCCESS } from '@repo/constants';
 
 const ForgotPassword = () => {
   const toast = useToast();
@@ -28,7 +28,10 @@ const ForgotPassword = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <VerificationLayout title="Forgot Password" description="Coming soon!">
+      <VerificationLayout
+        title="Forgot Password"
+        description={ALERT.COMING_SOON}
+      >
         <ForgotPasswordForm onSuccess={handleSuccess} onError={handleError} />
       </VerificationLayout>
     </SafeAreaView>

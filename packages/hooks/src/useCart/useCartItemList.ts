@@ -11,11 +11,11 @@ import { CartItem } from '@repo/models';
 // Services
 import { getCartItemList } from '@services/cart';
 
-const useCartItemList = (): UseQueryResult<CartItem[]> => {
+const useCartItemList = (userId: number): UseQueryResult<CartItem[]> => {
   return useQuery({
     queryKey: [QUERY_KEY.CART],
     queryFn: async () => {
-      const response = await getCartItemList();
+      const response = await getCartItemList(userId);
       const result: CartItem[] = [];
 
       response.cartItems.forEach((cartItem: CartItem) => {

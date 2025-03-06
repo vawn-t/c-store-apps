@@ -13,6 +13,7 @@ import { Button, UserIcon } from '@repo/ui';
 
 // Images
 import { Images } from '@assets/images';
+import { extractUserIdFromToken } from '@repo/utils';
 
 const Welcome = () => {
   return (

@@ -2,9 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { TouchableWithoutFeedback, View, TouchableOpacity } from 'react-native';
 
 // Components
-import { AddIcon, CartTinyIcon, MinusIcon } from '@components';
+import { AddIcon, CartTinyIcon, MinusIcon, useToast } from '@components';
 import { Typography } from '@components';
-// import Toast from 'react-native-root-toast';
 
 // Interfaces
 
@@ -22,12 +21,10 @@ import {
   useCartItemUpdate,
 } from '@repo/hooks';
 
-// Constants
-import { SUCCESS } from '@repo/constants';
-
 // Styles
 import styles from './styles';
 import { FontWeight, TypoVariant } from '@interfaces';
+import { SUCCESS } from '@repo/constants';
 
 interface IProps {
   productId: number;
@@ -44,8 +41,11 @@ const AddToCartButton = ({ productId }: IProps) => {
   const [quantity, setQuantity] = useState<number>(cartItem?.quantity || 1);
 
   const debouncedQuantity = useDebounce(quantity);
+  const toast = useToast();
 
   const isMounted = useRef(false);
+
+  const userId = useStore((state) => state.userId);
 
   // Queries
   const {
@@ -53,21 +53,21 @@ const AddToCartButton = ({ productId }: IProps) => {
     isSuccess: isAddCartItemSuccess,
     isError: isAddCartItemError,
     error: cartItemError,
-  } = useCartItemAdd();
+  } = useCartItemAdd(userId);
 
   const {
     mutateAsync: deleteCartItem,
     isSuccess: isDeleteCartItemSuccess,
     error: deleteCartItemError,
     isError: isDeleteCartItemError,
-  } = useCartItemDelete();
+  } = useCartItemDelete(userId);
 
   const {
     mutateAsync: updateCartItem,
     isSuccess: isUpdateCartItemSuccess,
     error: updateCartItemError,
     isError: isUpdateCartItemError,
-  } = useCartItemUpdate();
+  } = useCartItemUpdate(userId);
 
   useEffect(() => {
     if (cartItem) {
@@ -77,7 +77,7 @@ const AddToCartButton = ({ productId }: IProps) => {
 
   useEffect(() => {
     if (isAddCartItemSuccess) {
-      // Toast.show(SUCCESS.ADD_TO_CART);
+      toast.show(SUCCESS.ADD_TO_CART);
     } else if (isAddCartItemError) {
       if (cartItemError.response?.data.errors?.length) {
         // Toast.show(cartItemError.response.data.errors[0].msg);
@@ -89,12 +89,15 @@ const AddToCartButton = ({ productId }: IProps) => {
 
   useEffect(() => {
     if (isDeleteCartItemSuccess) {
-      // Toast.show(SUCCESS.DELETE_CART_ITEM);
+      toast.show(SUCCESS.DELETE_CART_ITEM);
     } else if (isDeleteCartItemError) {
       if (deleteCartItemError.response?.data.errors?.length) {
-        // Toast.show(deleteCartItemError.response.data.errors[0].msg);
+        toast.show({
+          message: deleteCartItemError.response.data.errors[0].msg,
+          type: 'error',
+        });
       } else {
-        // Toast.show(deleteCartItemError.message);
+        toast.show({ message: deleteCartItemError.message, type: 'error' });
       }
     }
   }, [isDeleteCartItemSuccess, isDeleteCartItemError, deleteCartItemError]);
@@ -104,9 +107,12 @@ const AddToCartButton = ({ productId }: IProps) => {
       // Toast.show(SUCCESS.UPDATE_CART_ITEM);
     } else if (isUpdateCartItemError) {
       if (updateCartItemError.response?.data.errors?.length) {
-        // Toast.show(updateCartItemError.response.data.errors[0].msg);
+        toast.show({
+          message: updateCartItemError.response.data.errors[0].msg,
+          type: 'error',
+        });
       } else {
-        // Toast.show(updateCartItemError.message);
+        toast.show({ message: updateCartItemError.message, type: 'error' });
       }
     }
   }, [isUpdateCartItemSuccess, isUpdateCartItemError, updateCartItemError]);
@@ -179,7 +185,7 @@ const AddToCartButton = ({ productId }: IProps) => {
             style={styles.baseTitle}
             fontWeight={FontWeight.Medium}
           >
-            quantity
+            {quantity}
           </Typography>
 
           <TouchableOpacity

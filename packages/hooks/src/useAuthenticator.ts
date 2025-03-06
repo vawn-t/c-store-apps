@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { useCallback, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // Types
 import type {
@@ -18,7 +16,7 @@ import { useStore } from '@repo/stores';
 import useAuthLogin from './useAuth/useAuthLogin';
 
 // Constants
-import { RootStackParamList, SECURE_STORE, ScreenNames } from '@repo/constants';
+import { SECURE_STORE } from '@repo/constants';
 
 // Utils
 import { save, validateLoginForm, validateSignUpForm } from '@repo/utils';
@@ -31,11 +29,7 @@ const useAuthenticator = () => {
   const setPhone = useStore.use.setPhone();
   const disableLoading = useStore.use.disableLoading();
   const enableLoading = useStore.use.enableLoading();
-
-  const navigation =
-    useNavigation<
-      NativeStackNavigationProp<RootStackParamList, ScreenNames.Login>
-    >();
+  const setUserId = useStore.use.setUserId();
 
   const { mutateAsync: loginAsync, isPending: isLoginPending } = useAuthLogin();
 
@@ -48,6 +42,7 @@ const useAuthenticator = () => {
       onSuccess: () => void,
       onError: (message: string) => void
     ) => {
+      enableLoading();
       const { errors, isFormValid } = validateLoginForm(formData);
 
       setErrors(errors);
@@ -64,11 +59,9 @@ const useAuthenticator = () => {
           // save auth token to secure store
           save(SECURE_STORE.AUTH_TOKEN, data.token);
 
+          setUserId(data.token);
+
           axios.defaults.headers.common['Authorization'] = data.token;
-
-          navigation.navigate(ScreenNames.HomeStack);
-
-          disableLoading();
 
           onSuccess();
         },
@@ -80,11 +73,9 @@ const useAuthenticator = () => {
           } else {
             onError(error.message);
           }
-
-          disableLoading();
         },
+        onSettled: () => disableLoading(),
       });
-      enableLoading();
     },
     [loginAsync, validateLoginForm]
   );
@@ -105,6 +96,8 @@ const useAuthenticator = () => {
       onSuccess: (message: string) => void,
       onError: (message: string) => void
     ) => {
+      enableLoading();
+
       const { errors, isFormValid } = validateSignUpForm(formData);
 
       setErrors(errors);
@@ -117,14 +110,10 @@ const useAuthenticator = () => {
 
       setPhone(formData.phone);
 
-      enableLoading();
-
       signUpAsync(formData, {
         onSuccess: (data) => {
           // save otp token to secure store
           save(SECURE_STORE.OTP_TOKEN, data.token);
-
-          console.log('OTP_TOKEN', data.token);
 
           disableLoading();
 
@@ -138,9 +127,8 @@ const useAuthenticator = () => {
           } else {
             onError(error.message);
           }
-
-          disableLoading();
         },
+        onSettled: () => disableLoading(),
       });
     },
     [signUpAsync, validateSignUpForm]

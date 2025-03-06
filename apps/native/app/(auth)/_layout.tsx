@@ -1,10 +1,8 @@
-import { Stack, useRouter } from 'expo-router';
+import { Stack } from 'expo-router';
 
 import { colors, Header } from '@repo/ui';
 
 const AuthLayout = () => {
-  const router = useRouter();
-
   return (
     <Stack
       screenOptions={{

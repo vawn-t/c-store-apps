@@ -16,3 +16,4 @@ export { default as HeartIcon } from './HeartIcon';
 export { default as HeartFillIcon } from './HeartFillIcon';
 export { default as EyeSlashIcon } from './EyeSlashIcon';
 export { default as DeleteIcon } from './DeleteIcon';
+export { default as SearchIcon } from './SearchIcon';

@@ -3,7 +3,7 @@ import { View, TouchableOpacity } from 'react-native';
 // import Toast from 'react-native-root-toast';
 
 // Components
-import { Button, CartIcon, Typography } from '@components';
+import { Button, CartIcon, Typography, useToast } from '@components';
 import { AddIcon, MinusIcon } from '@components';
 
 // Types
@@ -35,6 +35,7 @@ const ProductFooter = ({ productId: productId }: IProps) => {
   // Stores
   const cartItemById = useStore.use.cartItemById();
   const getCartItemByProductId = useStore.use.getCartItemByProductId();
+  const userId = useStore((state) => state.userId);
 
   // Queries
   const {
@@ -43,7 +44,7 @@ const ProductFooter = ({ productId: productId }: IProps) => {
     isSuccess: isAddCartItemSuccess,
     isError: isAddCartItemError,
     error: cartItemError,
-  } = useCartItemAdd();
+  } = useCartItemAdd(userId);
 
   const {
     mutateAsync: updateCartItem,
@@ -51,7 +52,7 @@ const ProductFooter = ({ productId: productId }: IProps) => {
     isSuccess: isCartItemUpdated,
     error: updateCartItemError,
     isError: isUpdateCartItemError,
-  } = useCartItemUpdate();
+  } = useCartItemUpdate(userId);
 
   const cartItemId = getCartItemByProductId(productId)?.id;
 

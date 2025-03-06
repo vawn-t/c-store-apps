@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 // Constants
-import { SERVER_ERROR } from '@repo/constants';
-// import { getValueFor } from '@repo/utils';
+import { SECURE_STORE, SERVER_ERROR } from '@repo/constants';
+import { getValueFor } from '@repo/utils';
 
 const defaultOptions = {
   baseURL: process.env.EXPO_PUBLIC_API_URL,
@@ -41,8 +41,13 @@ instance.interceptors.response.use(
 );
 
 const GET = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
+  const authToken = (await getValueFor(SECURE_STORE.AUTH_TOKEN)) || '';
+  const defaultConfig = { headers: { Authorization: authToken } };
   try {
-    const res: AxiosResponse<T> = await instance.get(url, config);
+    const res: AxiosResponse<T> = await instance.get(url, {
+      ...defaultConfig,
+      ...config,
+    });
     return res.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -17,7 +17,7 @@ const DEFAULT_STATE: State = {
 };
 
 const createLoadingSlice: StateCreator<LoadingState, [], [], LoadingState> = (
-  set,
+  set
 ) => ({
   ...DEFAULT_STATE,
   toggleLoading: () => set((state) => ({ isLoading: !state.isLoading })),

@@ -54,8 +54,6 @@ const ForgotPasswordForm = ({ onError, onSuccess }: Props) => {
     disableLoading();
   }, [disableLoading, email, enableLoading, mutateAsync, onError, onSuccess]);
 
-  console.log('isPending', isPending);
-
   return (
     <View style={styles.container}>
       <Input
@@ -65,7 +63,7 @@ const ForgotPasswordForm = ({ onError, onSuccess }: Props) => {
         keyboardType="email-address"
         onChangeText={setEmail}
       />
-      <Button onPress={handleSendOTP} disabled={!email || isPending}>
+      <Button onPress={handleSendOTP} disabled>
         Reset Password
       </Button>
     </View>
