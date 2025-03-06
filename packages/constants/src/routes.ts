@@ -18,10 +18,12 @@ const ROUTES = {
     GET_ALL: '/catalogue/product-units',
   },
   CART: {
-    GET_ALL: '/users/cart-items',
-    ADD: '/users/cart-items',
-    deleteByProductId: (id: number) => `/users/cart-items/${id}`,
-    updateCartItem: (id: number) => `/users/cart-items/${id}`,
+    GET_ALL: (userId: number) => `/users/${userId}/cart-items`,
+    ADD: (userId: number) => `/users/${userId}/cart-items`,
+    deleteByProductId: (id: number, userId: number) =>
+      `/users/${userId}/cart-items/${id}`,
+    updateCartItem: (id: number, userId: number) =>
+      `/users/${userId}/cart-items/${id}`,
   },
 };
 
@@ -34,6 +36,8 @@ const APP_ROUTES = {
 
   POST_AUTH_STACK: '/(post-auth)',
   POST_AUTH_SEARCH: '/(post-auth)/search',
+  POST_AUTH_DETAILS: '/(post-auth)/details',
+  POST_AUTH_CART_ITEMS: '/(post-auth)/cart-items',
 };
 
 export { ROUTES, APP_ROUTES };

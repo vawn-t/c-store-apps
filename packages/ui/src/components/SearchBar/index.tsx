@@ -3,43 +3,27 @@ import {
   NativeSyntheticEvent,
   TextInputSubmitEditingEventData,
 } from 'react-native';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 // Components
-import { Input } from '@components';
-
-// Hooks
-
-// Icons
+import { Input, SearchIcon } from '@components';
 
 // Themes
 import { colors } from '@themes';
 
-// Constants
-import { RootStackParamList, ScreenNames } from '@repo/constants';
-
 // Stores
 import { useStore } from '@repo/stores';
-import SearchIcon from '@components/Icons/SearchIcon';
 
 interface IProps {
   currentSearchValue?: string;
+  onNavigateToSearch?: () => void;
 }
 
-const SearchBar = ({ currentSearchValue = '' }: IProps) => {
+const SearchBar = ({ currentSearchValue = '', onNavigateToSearch }: IProps) => {
   // Stores
   const addSearchItem = useStore.use.addSearchItem();
   const setCurrentSearchItem = useStore.use.setCurrentSearchItem();
 
   const [searchValue, setSearchValue] = useState(currentSearchValue);
-
-  const route = useRoute<RouteProp<RootStackParamList>>();
-
-  const navigation =
-    useNavigation<
-      NativeStackNavigationProp<RootStackParamList, ScreenNames.HomeStack>
-    >();
 
   useEffect(() => {
     if (currentSearchValue) {
@@ -57,12 +41,9 @@ const SearchBar = ({ currentSearchValue = '' }: IProps) => {
 
       setCurrentSearchItem(value);
 
-      if (route.name !== ScreenNames.search) {
-        // Navigate from home screen
-        navigation.navigate(ScreenNames.search);
-      }
+      if (onNavigateToSearch) onNavigateToSearch();
     },
-    []
+    [addSearchItem, onNavigateToSearch, setCurrentSearchItem]
   );
 
   const handleSearchTextChange = useCallback((text: string) => {
@@ -78,7 +59,7 @@ const SearchBar = ({ currentSearchValue = '' }: IProps) => {
       icon={<SearchIcon />}
       placeholder="Search keywords.."
       value={searchValue}
-      containerStyles={{ backgroundColor: colors.background.dark }}
+      containerStyles={{ backgroundColor: colors.background.primary }}
       onSubmitEditing={handleSearch}
       onChangeText={handleSearchTextChange}
     />

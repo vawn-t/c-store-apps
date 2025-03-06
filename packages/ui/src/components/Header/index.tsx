@@ -1,6 +1,5 @@
 import { memo, useCallback } from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import type { NativeStackHeaderProps } from '@react-navigation/native-stack';
 
 // Themes
 import { colors } from '@themes';
@@ -14,17 +13,16 @@ import { SizeType } from '@interfaces';
 // Styles
 import styles from './styles';
 
-interface IProps extends NativeStackHeaderProps {}
-
-const Header = ({
-  options: { title, headerTitleStyle },
-  navigation,
-}: NativeStackHeaderProps) => {
+const Header = ({}) => {
   const handleGoBack = useCallback(() => {
-    if (navigation.canGoBack()) {
-      navigation.goBack();
-    }
-  }, [navigation]);
+    // if (navigation.canGoBack()) {
+    //   navigation.goBack();
+    // }
+  }, []);
+
+  const headerTitleStyle = {};
+
+  const title = 'Shopping Cart';
 
   return (
     <View style={styles.header}>
@@ -33,7 +31,7 @@ const Header = ({
           style={[styles.title, headerTitleStyle]}
           size={SizeType.Large}
         >
-          {title}{' '}
+          {title}
         </Typography>
       )}
       <View style={styles.backIconWrapper}>

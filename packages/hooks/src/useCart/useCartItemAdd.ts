@@ -11,7 +11,7 @@ import { useStore } from '@repo/stores';
 // Models
 import { CartItem } from '@repo/models';
 
-const useCartItemAdd = () => {
+const useCartItemAdd = (userId: number) => {
   const setCartItemAdded = useStore.use.setCartItemAdded();
   const enableLoading = useStore.use.enableLoading();
   const disableLoading = useStore.use.disableLoading();
@@ -25,7 +25,7 @@ const useCartItemAdd = () => {
       quantity?: number;
     }) => {
       enableLoading();
-      const response = await addToCart(productId, quantity);
+      const response = await addToCart(productId, quantity, userId);
       return new CartItem(response);
     },
 

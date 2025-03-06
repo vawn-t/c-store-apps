@@ -16,8 +16,6 @@
     "typescript": "5.5.4"
   },
   "dependencies": {
-    "@react-navigation/native": "6.1.9",
-    "@react-navigation/native-stack": "6.9.17",
     "@repo/constants": "workspace:*",
     "@repo/models": "workspace:*",
     "@repo/stores": "workspace:*",

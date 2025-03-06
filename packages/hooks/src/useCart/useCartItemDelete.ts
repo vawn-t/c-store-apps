@@ -8,7 +8,7 @@ import { deleteCartItem } from '@services/cart';
 // Types
 import { useStore } from '@repo/stores';
 
-const useCartItemDelete = () => {
+const useCartItemDelete = (userId: number) => {
   const enableLoading = useStore.use.enableLoading();
   const disableLoading = useStore.use.disableLoading();
   const deleteCartItemById = useStore.use.deleteCartItemById();
@@ -16,7 +16,7 @@ const useCartItemDelete = () => {
   return useMutation({
     mutationFn: (cartItemId: number) => {
       enableLoading();
-      return deleteCartItem(cartItemId);
+      return deleteCartItem(cartItemId, userId);
     },
     onSuccess: (_, cartItemId) => {
       deleteCartItemById(cartItemId);

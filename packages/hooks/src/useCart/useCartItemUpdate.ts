@@ -12,7 +12,7 @@ import { useStore } from '@repo/stores';
 import { CartItem } from '@repo/models';
 // import type { ICartItem } from '@repo/models';
 
-const useCartItemUpdate = () => {
+const useCartItemUpdate = (userId: number) => {
   const updateCartItemQuantity = useStore.use.updateCartItemQuantity();
 
   return useMutation({
@@ -23,7 +23,7 @@ const useCartItemUpdate = () => {
       cartItemId: number;
       quantity: number;
     }) => {
-      const response = await updateCartItem(cartItemId, quantity);
+      const response = await updateCartItem(cartItemId, quantity, userId);
       return new CartItem(response);
     },
 

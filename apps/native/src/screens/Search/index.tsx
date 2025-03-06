@@ -1,8 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 
 // Components
 import { BackIcon } from '@repo/ui';
@@ -11,12 +10,6 @@ import { LoadingIndicator } from '@repo/ui';
 
 // Themes
 import { colors } from '@repo/ui';
-
-// Types
-import { RootStackParamList } from '@repo/constants';
-
-// Constants
-import { ScreenNames } from '@repo/constants';
 
 // Stores
 import { useStore } from '@repo/stores';
@@ -28,6 +21,8 @@ import { useProductSearch } from '@repo/hooks';
 import styles from './styles';
 
 const Search = () => {
+  const route = useRouter();
+
   // Stores
   const currentSearchValue = useStore.use.currentSearchValue();
 
@@ -38,11 +33,6 @@ const Search = () => {
     refetch,
   } = useProductSearch(currentSearchValue);
 
-  const navigation =
-    useNavigation<
-      NativeStackNavigationProp<RootStackParamList, ScreenNames.search>
-    >();
-
   useEffect(() => {
     if (currentSearchValue) {
       refetch();
@@ -50,7 +40,7 @@ const Search = () => {
   }, [currentSearchValue]);
 
   const handleGoBack = useCallback(() => {
-    navigation.goBack();
+    route.back();
   }, []);
 
   return (

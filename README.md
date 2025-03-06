@@ -78,3 +78,9 @@ This Turborepo includes the following packages/apps:
 ## DIRECTORY STRUCTURE
 
 (To be updated during the project)
+
+## Test accounts
+
+- Account 1:
+  - Email: `temp.mail@tempmail.vn`
+  - Password: `!Asnet123`

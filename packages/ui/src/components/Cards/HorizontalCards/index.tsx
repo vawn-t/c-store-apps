@@ -15,9 +15,10 @@ import styles from './styles';
 
 interface IProps {
   products: Product[];
+  onNavigateToDetails: () => void;
 }
 
-const HorizontalCards = ({ products }: IProps) => (
+const HorizontalCards = ({ products, onNavigateToDetails }: IProps) => (
   <FlatList
     scrollEnabled={false}
     nestedScrollEnabled
@@ -31,6 +32,7 @@ const HorizontalCards = ({ products }: IProps) => (
         name={name}
         image={thumbnail}
         price={price}
+        onNavigateToDetails={onNavigateToDetails}
       />
     )}
     keyExtractor={({ id }) => id.toString()}

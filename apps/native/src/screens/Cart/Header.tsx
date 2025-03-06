@@ -1,9 +1,4 @@
 import { View } from 'react-native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
-
-// Constants
-import { RootStackParamList, ScreenNames } from '@repo/constants';
 
 // Components
 import { BackIcon } from '@repo/ui';
@@ -19,14 +14,10 @@ import { FontWeight, SizeType, TypoVariant } from '@repo/ui';
 import styles from './styles';
 
 const Header = () => {
-  const navigation =
-    useNavigation<
-      NativeStackNavigationProp<RootStackParamList, ScreenNames.Cart>
-    >();
-
   const handleGoBack = () => {
-    navigation.goBack();
+    // navigation.goBack();
   };
+
   return (
     <View style={styles.headerContainer}>
       <BackIcon
