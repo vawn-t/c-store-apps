@@ -20,29 +20,31 @@ import styles from './styles';
 interface IProps {
   results: Product[];
 }
-const SearchResult = ({ results }: IProps) => (
-  <View>
-    <Typography
-      fontWeight={FontWeight.SemiBold}
-      size={SizeType.Large}
-      variant={TypoVariant.Paragraph2}
-    >
-      Results
-    </Typography>
+const SearchResult = ({ results }: IProps) => {
+  return (
+    <View>
+      <Typography
+        fontWeight={FontWeight.SemiBold}
+        size={SizeType.Large}
+        variant={TypoVariant.Paragraph2}
+      >
+        Results
+      </Typography>
 
-    {results.length ? (
-      <HorizontalCards products={results} />
-    ) : (
-      <View style={styles.notFoundWrapper}>
-        <Typography
-          variant={TypoVariant.Paragraph2}
-          fontWeight={FontWeight.SemiBold}
-        >
-          The products are not available!
-        </Typography>
-      </View>
-    )}
-  </View>
-);
+      {results.length ? (
+        <HorizontalCards products={results} onNavigateToDetails={() => null} />
+      ) : (
+        <View style={styles.notFoundWrapper}>
+          <Typography
+            variant={TypoVariant.Paragraph2}
+            fontWeight={FontWeight.SemiBold}
+          >
+            The products are not available!
+          </Typography>
+        </View>
+      )}
+    </View>
+  );
+};
 
 export default memo(SearchResult, areEqual);

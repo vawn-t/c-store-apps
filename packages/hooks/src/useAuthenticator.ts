@@ -115,8 +115,6 @@ const useAuthenticator = () => {
           // save otp token to secure store
           save(SECURE_STORE.OTP_TOKEN, data.token);
 
-          console.log('OTP_TOKEN', data.token);
-
           disableLoading();
 
           onSuccess(formData.email);
