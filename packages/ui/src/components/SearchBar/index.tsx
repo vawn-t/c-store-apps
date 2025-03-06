@@ -7,18 +7,20 @@ import {
 // Components
 import { Input, SearchIcon } from '@components';
 
-// Themes
-import { colors } from '@themes';
-
 // Stores
 import { useStore } from '@repo/stores';
 
 interface IProps {
   currentSearchValue?: string;
+  inputColor: string;
   onNavigateToSearch?: () => void;
 }
 
-const SearchBar = ({ currentSearchValue = '', onNavigateToSearch }: IProps) => {
+const SearchBar = ({
+  currentSearchValue = '',
+  inputColor,
+  onNavigateToSearch,
+}: IProps) => {
   // Stores
   const addSearchItem = useStore.use.addSearchItem();
   const setCurrentSearchItem = useStore.use.setCurrentSearchItem();
@@ -59,7 +61,9 @@ const SearchBar = ({ currentSearchValue = '', onNavigateToSearch }: IProps) => {
       icon={<SearchIcon />}
       placeholder="Search keywords.."
       value={searchValue}
-      containerStyles={{ backgroundColor: colors.background.primary }}
+      containerStyles={{
+        backgroundColor: inputColor,
+      }}
       onSubmitEditing={handleSearch}
       onChangeText={handleSearchTextChange}
     />

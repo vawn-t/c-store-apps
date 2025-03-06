@@ -56,7 +56,13 @@
       "reactNativeDirectoryCheck": {
         "enabled": true,
         "exclude": [
-          "@repo/ui"
+          "@repo/ui",
+          "@repo/constants",
+          "@repo/hooks",
+          "@repo/models",
+          "@repo/services",
+          "@repo/stores",
+          "@repo/utils"
         ],
         "listUnknownPackages": true
       }

@@ -3,7 +3,13 @@ import { ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Components
-import { Categories, FeaturedProducts, SearchBar, useToast } from '@repo/ui';
+import {
+  Categories,
+  colors,
+  FeaturedProducts,
+  SearchBar,
+  useToast,
+} from '@repo/ui';
 import { Banners } from '@components';
 
 // Stores
@@ -78,7 +84,10 @@ const Home = () => {
   return (
     <SafeAreaView edges={['right', 'left', 'top']} style={styles.background}>
       <ScrollView contentContainerStyle={styles.container} nestedScrollEnabled>
-        <SearchBar onNavigateToSearch={handleNavigateToSearchScreen} />
+        <SearchBar
+          onNavigateToSearch={handleNavigateToSearchScreen}
+          inputColor={colors.background.light}
+        />
         <Banners />
         <Categories />
         <FeaturedProducts
