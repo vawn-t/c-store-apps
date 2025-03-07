@@ -1,4 +1,3 @@
-import { colors } from '@repo/ui';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({

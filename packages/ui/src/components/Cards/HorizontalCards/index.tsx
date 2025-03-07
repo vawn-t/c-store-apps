@@ -15,7 +15,7 @@ import styles from './styles';
 
 interface IProps {
   products: Product[];
-  onNavigateToDetails: () => void;
+  onNavigateToDetails: (id: number) => void;
 }
 
 const HorizontalCards = ({ products, onNavigateToDetails }: IProps) => (
@@ -32,7 +32,7 @@ const HorizontalCards = ({ products, onNavigateToDetails }: IProps) => (
         name={name}
         image={thumbnail}
         price={price}
-        onNavigateToDetails={onNavigateToDetails}
+        onNavigateToDetails={() => onNavigateToDetails(id)}
       />
     )}
     keyExtractor={({ id }) => id.toString()}

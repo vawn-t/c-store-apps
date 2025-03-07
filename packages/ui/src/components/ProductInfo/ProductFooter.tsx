@@ -1,6 +1,5 @@
 import { memo, useCallback, useEffect, useState } from 'react';
 import { View, TouchableOpacity } from 'react-native';
-// import Toast from 'react-native-root-toast';
 
 // Components
 import { Button, CartIcon, Typography, useToast } from '@components';
@@ -37,6 +36,8 @@ const ProductFooter = ({ productId: productId }: IProps) => {
   const getCartItemByProductId = useStore.use.getCartItemByProductId();
   const userId = useStore((state) => state.userId);
 
+  const toast = useToast();
+
   // Queries
   const {
     mutateAsync: addToCart,
@@ -58,12 +59,12 @@ const ProductFooter = ({ productId: productId }: IProps) => {
 
   useEffect(() => {
     if (isAddCartItemSuccess) {
-      // Toast.show(SUCCESS.ADD_TO_CART);
+      toast.show(SUCCESS.ADD_TO_CART);
     } else if (isAddCartItemError) {
       if (cartItemError.response?.data.errors?.length) {
-        // Toast.show(cartItemError.response.data.errors[0].msg);
+        toast.show(cartItemError.response.data.errors[0].msg);
       } else {
-        // Toast.show(cartItemError.message);
+        toast.show(cartItemError.message);
       }
     }
   }, [isAddCartItemSuccess, isAddCartItemError, cartItemError]);
@@ -84,15 +85,15 @@ const ProductFooter = ({ productId: productId }: IProps) => {
 
   useEffect(() => {
     if (isCartItemUpdated) {
-      // Toast.show(SUCCESS.UPDATE_CART_ITEM);
+      toast.show(SUCCESS.UPDATE_CART_ITEM);
     } else if (isUpdateCartItemError) {
       if (updateCartItemError.response?.data.errors?.length) {
-        // Toast.show(updateCartItemError.response.data.errors[0].msg);
+        toast.show(updateCartItemError.response.data.errors[0].msg);
       } else {
-        // Toast.show(updateCartItemError.message);
+        toast.show(updateCartItemError.message);
       }
     }
-  }, [isCartItemUpdated, isUpdateCartItemError, updateCartItemError]);
+  }, [isCartItemUpdated, isUpdateCartItemError, toast, updateCartItemError]);
 
   const handleIncreaseQuantity = useCallback(() => {
     setQuantity((prev) => prev + 1);

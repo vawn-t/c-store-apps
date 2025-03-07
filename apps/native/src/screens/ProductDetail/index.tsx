@@ -1,14 +1,8 @@
 import { Image, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// Constants
-import { ScreenNames } from '@repo/constants';
-
-// Types
-import { RootStackParamList } from '@repo/constants';
-
 // Components
-import { ProductInfo, Header } from '@repo/ui';
+import { ProductInfo } from '@repo/ui';
 import { LoadingIndicator } from '@repo/ui';
 
 // Hooks
@@ -17,9 +11,12 @@ import { useProductDetail } from '@repo/hooks';
 // Styles
 import styles from './styles';
 
-const ProductDetail = () => {
-  const paramId = 1;
-  const { data } = useProductDetail(paramId);
+interface Props {
+  id: string;
+}
+
+const ProductDetail = ({ id }: Props) => {
+  const { data } = useProductDetail(+id);
 
   return (
     <View style={styles.background}>

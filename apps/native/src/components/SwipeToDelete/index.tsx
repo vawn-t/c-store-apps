@@ -11,6 +11,7 @@ import { useCartItemDelete } from '@repo/hooks';
 // Styles
 import styles from './styles';
 import { DeleteIcon } from '@repo/ui';
+import { useStore } from '@repo/stores';
 
 interface IProps {
   cartItemId: number;
@@ -18,7 +19,8 @@ interface IProps {
 }
 
 const SwipeToDelete: React.FC<IProps> = ({ children, cartItemId }: IProps) => {
-  const { mutateAsync: deleteCartItem } = useCartItemDelete();
+  const userId = useStore((state) => state.userId);
+  const { mutateAsync: deleteCartItem } = useCartItemDelete(userId);
 
   const renderRightActions = (
     onPress: (event: GestureResponderEvent) => void

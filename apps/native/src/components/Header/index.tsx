@@ -10,7 +10,7 @@ import styles from './styles';
 
 const Header = ({
   navigation,
-  options: { title, headerTitleStyle, headerStyle },
+  options: { title = '', headerTitleStyle, headerStyle },
 }: NativeStackHeaderProps) => {
   const handleGoBack = useCallback(() => {
     navigation.goBack();

@@ -43,6 +43,7 @@ instance.interceptors.response.use(
 const GET = async <T>(url: string, config?: AxiosRequestConfig): Promise<T> => {
   const authToken = (await getValueFor(SECURE_STORE.AUTH_TOKEN)) || '';
   const defaultConfig = { headers: { Authorization: authToken } };
+
   try {
     const res: AxiosResponse<T> = await instance.get(url, {
       ...defaultConfig,
@@ -62,8 +63,14 @@ const POST = async <T>(
   payload: unknown,
   config?: AxiosRequestConfig
 ) => {
+  const authToken = (await getValueFor(SECURE_STORE.AUTH_TOKEN)) || '';
+  const defaultConfig = { headers: { Authorization: authToken } };
+
   try {
-    const res: AxiosResponse<T> = await instance.post(url, payload, config);
+    const res: AxiosResponse<T> = await instance.post(url, payload, {
+      ...defaultConfig,
+      ...config,
+    });
 
     return res.data;
   } catch (error: unknown) {
@@ -78,8 +85,14 @@ const DELETE = async <T>(
   url: string,
   config?: AxiosRequestConfig
 ): Promise<T> => {
+  const authToken = (await getValueFor(SECURE_STORE.AUTH_TOKEN)) || '';
+  const defaultConfig = { headers: { Authorization: authToken } };
+
   try {
-    const res: AxiosResponse<T> = await instance.delete(url, config);
+    const res: AxiosResponse<T> = await instance.delete(url, {
+      ...defaultConfig,
+      ...config,
+    });
 
     return res.data;
   } catch (error) {
@@ -95,8 +108,14 @@ const PATCH = async <T>(
   payload: unknown,
   config?: AxiosRequestConfig
 ): Promise<T> => {
+  const authToken = (await getValueFor(SECURE_STORE.AUTH_TOKEN)) || '';
+  const defaultConfig = { headers: { Authorization: authToken } };
+
   try {
-    const res: AxiosResponse<T> = await instance.patch(url, payload, config);
+    const res: AxiosResponse<T> = await instance.patch(url, payload, {
+      ...defaultConfig,
+      ...config,
+    });
 
     return res.data;
   } catch (error) {

@@ -6,8 +6,26 @@ export default function PostAuthLayout() {
   return (
     <Stack initialRouteName="(tabs)" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" />
-      <Stack.Screen name="details" />
-      <Stack.Screen name="search" />
+
+      <Stack.Screen
+        name="product/[id].tsx"
+        options={{
+          headerShown: true,
+          title: 'Product Detail',
+          header: Header,
+          headerTitleStyle: { color: colors.text.secondary },
+        }}
+      />
+
+      <Stack.Screen
+        name="search"
+        options={{
+          headerShown: true,
+          header: Header,
+          headerTitleStyle: { color: colors.text.secondary },
+        }}
+      />
+
       <Stack.Screen
         name="cart-items"
         options={{
