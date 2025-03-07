@@ -11,7 +11,7 @@
       "@components": ["src/components/index.ts"],
       "@themes": ["./src/themes/index.ts"],
       "@mocks": ["./src/mocks/index.ts"],
-      "@interfaces": ["./src/interfaces/index.ts"],
+      "@interfaces": ["./src/interfaces/index.ts"]
     }
   }
 }

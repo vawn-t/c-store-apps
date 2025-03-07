@@ -1,6 +1,7 @@
 import { Stack } from 'expo-router';
 
-import { colors, Header } from '@repo/ui';
+import { colors } from '@repo/ui';
+import { Header } from '@components';
 
 const AuthLayout = () => {
   return (

@@ -8,7 +8,6 @@ export { default as Categories } from './Categories';
 export { default as EmptyCart } from './EmptyCart';
 export { default as FeaturedProducts } from './FeaturedProducts';
 export { default as GlobalLoader } from './GlobalLoader';
-export { default as Header } from './Header';
 export { default as HistorySearch } from './HistorySearch';
 export { default as ProductInfo } from './ProductInfo';
 export { default as SearchBar } from './SearchBar';

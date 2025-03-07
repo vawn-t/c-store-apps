@@ -1,17 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { Cart } from '@screens';
 
 export default function CartItemsScreen() {
-  return (
-    <View style={styles.container}>
-      <Text>Cart Items</Text>
-    </View>
-  );
+  return <Cart />;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
