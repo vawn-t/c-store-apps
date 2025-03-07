@@ -47,7 +47,10 @@ const Search = () => {
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <BackIcon color={colors.text.secondary} onPress={handleGoBack} />
-        <SearchBar currentSearchValue={currentSearchValue} />
+        <SearchBar
+          currentSearchValue={currentSearchValue}
+          backgroundInputColor={colors.background.dark}
+        />
       </View>
       <View style={styles.resultArea}>
         {currentSearchValue === '' ? (
