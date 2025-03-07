@@ -4,6 +4,7 @@ import { colors } from '@repo/ui';
 const styles = StyleSheet.create({
   screenWrapper: {
     backgroundColor: colors.background.primary,
+
     flex: 1,
   },
   container: {

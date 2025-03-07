@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     flexDirection: 'row',
-    marginTop: 20,
+    paddingVertical: 20,
   },
   backIconWrapper: {
     position: 'absolute',

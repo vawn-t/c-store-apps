@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: colors.background.primary,
     width: '100%',
+    paddingBottom: 20,
   },
   costItems: {
     rowGap: 5,

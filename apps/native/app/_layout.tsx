@@ -64,18 +64,14 @@ const RootLayout = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <RootSiblingParent>
-        <ToastProvider>
-          <SafeAreaProvider>
+        <SafeAreaProvider>
+          <ToastProvider>
             <Stack
               screenOptions={{
                 headerShown: false,
-                contentStyle: {
-                  flex: 1,
-                  backgroundColor: 'transparent',
-                },
               }}
             >
-              <StatusBar translucent backgroundColor="transparent" />
+              <StatusBar backgroundColor="transparent" />
 
               <Stack.Screen name="index" />
               <Stack.Screen name="(auth)" />
@@ -83,8 +79,8 @@ const RootLayout = () => {
             </Stack>
 
             {isLoading && <GlobalLoader />}
-          </SafeAreaProvider>
-        </ToastProvider>
+          </ToastProvider>
+        </SafeAreaProvider>
       </RootSiblingParent>
     </QueryClientProvider>
   );

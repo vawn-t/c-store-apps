@@ -1,31 +1,25 @@
-import { memo, useCallback } from 'react';
-import { View, TouchableOpacity } from 'react-native';
-
-// Themes
-import { colors } from '@themes';
+import { useCallback } from 'react';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { NativeStackHeaderProps } from '@react-navigation/native-stack';
 
 // Components
-import { Typography, BackIcon } from '@components';
-
-// Types
-import { SizeType } from '@interfaces';
+import { Typography, BackIcon, SizeType } from '@repo/ui';
 
 // Styles
 import styles from './styles';
 
-const Header = ({}) => {
+const Header = ({
+  navigation,
+  options: { title, headerTitleStyle, headerStyle },
+}: NativeStackHeaderProps) => {
   const handleGoBack = useCallback(() => {
-    // if (navigation.canGoBack()) {
-    //   navigation.goBack();
-    // }
-  }, []);
+    navigation.goBack();
+  }, [navigation]);
 
-  const headerTitleStyle = {};
-
-  const title = 'Shopping Cart';
+  const color = StyleSheet.flatten(headerTitleStyle).color;
 
   return (
-    <View style={styles.header}>
+    <View style={[styles.header, headerStyle]}>
       {title && (
         <Typography
           style={[styles.title, headerTitleStyle]}
@@ -40,7 +34,7 @@ const Header = ({}) => {
           onPress={handleGoBack}
           hitSlop={{ top: 20, left: 20, right: 20, bottom: 20 }}
         >
-          <BackIcon style={styles.backIcon} />
+          <BackIcon style={[styles.backIcon]} color={color} />
         </TouchableOpacity>
       </View>
     </View>

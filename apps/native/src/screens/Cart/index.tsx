@@ -2,8 +2,8 @@ import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Components
-import { EmptyCart, ShoppingCart } from '@repo/ui';
-import Header from './Header';
+import { EmptyCart } from '@repo/ui';
+import { ShoppingCart } from '@components';
 
 // Stores
 import { useStore } from '@repo/stores';
@@ -17,7 +17,6 @@ const Cart = () => {
   return (
     <View style={styles.screenWrapper}>
       <SafeAreaView style={styles.container}>
-        <Header />
         {cartItemIds.length ? (
           <ShoppingCart cartItemIds={cartItemIds} />
         ) : (
