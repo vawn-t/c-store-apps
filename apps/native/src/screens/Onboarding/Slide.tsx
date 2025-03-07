@@ -49,7 +49,7 @@ const Slide = ({ item, index }: IProps) => {
           </View>
         )}
         <Typography style={styles.description}>
-          text={item.description || ''}
+          {item.description || ''}
         </Typography>
       </View>
     </ImageBackground>

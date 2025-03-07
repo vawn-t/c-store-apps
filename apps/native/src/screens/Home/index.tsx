@@ -86,7 +86,7 @@ const Home = () => {
       <ScrollView contentContainerStyle={styles.container} nestedScrollEnabled>
         <SearchBar
           onNavigateToSearch={handleNavigateToSearchScreen}
-          inputColor={colors.background.light}
+          backgroundInputColor={colors.background.primary}
         />
         <Banners />
         <Categories />

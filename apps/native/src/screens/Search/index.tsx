@@ -49,7 +49,7 @@ const Search = () => {
         <BackIcon color={colors.text.secondary} onPress={handleGoBack} />
         <SearchBar
           currentSearchValue={currentSearchValue}
-          inputColor={colors.background.dark}
+          backgroundInputColor={colors.background.dark}
         />
       </View>
       <View style={styles.resultArea}>

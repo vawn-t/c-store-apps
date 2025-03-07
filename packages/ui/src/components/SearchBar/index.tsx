@@ -12,13 +12,13 @@ import { useStore } from '@repo/stores';
 
 interface IProps {
   currentSearchValue?: string;
-  inputColor: string;
+  backgroundInputColor: string;
   onNavigateToSearch?: () => void;
 }
 
 const SearchBar = ({
   currentSearchValue = '',
-  inputColor,
+  backgroundInputColor,
   onNavigateToSearch,
 }: IProps) => {
   // Stores
@@ -62,7 +62,7 @@ const SearchBar = ({
       placeholder="Search keywords.."
       value={searchValue}
       containerStyles={{
-        backgroundColor: inputColor,
+        backgroundColor: backgroundInputColor,
       }}
       onSubmitEditing={handleSearch}
       onChangeText={handleSearchTextChange}
