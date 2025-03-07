@@ -36,7 +36,7 @@ const APP_ROUTES = {
 
   POST_AUTH_STACK: '/(post-auth)',
   POST_AUTH_SEARCH: '/(post-auth)/search',
-  POST_AUTH_DETAILS: '/(post-auth)/details',
+  POST_AUTH_DETAILS: (id: number) => `/(post-auth)/product/${id}`,
   POST_AUTH_CART_ITEMS: '/(post-auth)/cart-items',
 };
 

@@ -22,7 +22,7 @@ import { useStore } from '@repo/stores';
 import styles from './styles';
 
 interface Props {
-  onNavigateToDetails: () => void;
+  onNavigateToDetails: (id: number) => void;
 }
 
 const FeaturedProducts = ({ onNavigateToDetails }: Props) => {

@@ -77,8 +77,8 @@ const Home = () => {
     }
   }, []);
 
-  const handleNavigateToProductDetails = useCallback(() => {
-    route.navigate(APP_ROUTES.POST_AUTH_DETAILS);
+  const handleNavigateToProductDetails = useCallback((id: number) => {
+    route.navigate(APP_ROUTES.POST_AUTH_DETAILS(id));
   }, []);
 
   return (
