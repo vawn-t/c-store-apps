@@ -12,6 +12,7 @@ import {
 import styles from '../styles/index.module.css';
 import { API_URL } from '@repo/constants';
 import { useEffect } from 'react';
+import Link from 'next/link';
 
 const poppins = localFont({
   src: [
@@ -38,33 +39,19 @@ const poppins = localFont({
   ],
 });
 
-const Component = () => {
-  const toast = useToast();
-
-  useEffect(() => {
-    toast.show('Hello World');
-  }, []);
-
-  return (
-    <div>
-      <Typography fontWeight={FontWeight.Bold}> Native</Typography>
-      <Button onPress={() => console.log(123)}>123</Button>
-    </div>
-  );
-};
-
 export default function Web() {
   console.log('API_URL', API_URL);
 
   return (
     <ToastProvider>
       <div className={poppins.className}>
-        {/* <div className={styles.container}>
+        <div className={styles.container}>
           <h1 style={{ fontWeight: 500 }}>Web</h1>
           <Typography fontWeight={FontWeight.Bold}> Native</Typography>
-          <Button onPress={() => console.log(123)}>123</Button>
-        </div> */}
-        <Component />
+          <Link href="/signup">
+            <div>123</div>
+          </Link>
+        </div>
       </div>
     </ToastProvider>
   );
