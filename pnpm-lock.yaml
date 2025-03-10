@@ -32,9 +32,6 @@ importers:
       '@repo/models':
         specifier: workspace:*
         version: link:../../packages/models
-      '@repo/services':
-        specifier: workspace:*
-        version: link:../../packages/services
       '@repo/stores':
         specifier: workspace:*
         version: link:../../packages/stores
@@ -141,12 +138,27 @@ importers:
       '@repo/constants':
         specifier: workspace:*
         version: link:../../packages/constants
+      '@repo/hooks':
+        specifier: workspace:*
+        version: link:../../packages/hooks
+      '@repo/models':
+        specifier: workspace:*
+        version: link:../../packages/models
+      '@repo/stores':
+        specifier: workspace:*
+        version: link:../../packages/stores
       '@repo/ui':
         specifier: workspace:*
         version: link:../../packages/ui
+      '@repo/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@tanstack/react-query':
         specifier: 5.66.9
         version: 5.66.9(react@18.3.1)
+      axios:
+        specifier: ^1.5.1
+        version: 1.8.1
       next:
         specifier: ^14.0.4
         version: 14.2.24(@babel/core@7.26.9)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -178,9 +190,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.18
         version: 18.3.5(@types/react@18.3.18)
-      axios:
-        specifier: ^1.5.1
-        version: 1.8.1
       babel-plugin-react-native-web:
         specifier: ^0.19.10
         version: 0.19.13
@@ -297,21 +306,6 @@ importers:
         specifier: 5.5.4
         version: 5.5.4
 
-  packages/services:
-    devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      tsup:
-        specifier: ^8.0.1
-        version: 8.4.0(postcss@8.5.3)(typescript@5.5.4)
-      typescript:
-        specifier: 5.5.4
-        version: 5.5.4
-
   packages/stores:
     dependencies:
       '@react-native-async-storage/async-storage':
@@ -411,6 +405,9 @@ importers:
       expo-secure-store:
         specifier: 14.0.1
         version: 14.0.1(expo@52.0.37(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@expo/metro-runtime@4.0.1(react-native@0.76.7(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1)))(react-native@0.76.7(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1))(react@18.3.1))
+      react-native:
+        specifier: 0.76.7
+        version: 0.76.7(@babel/core@7.26.9)(@babel/preset-env@7.26.9(@babel/core@7.26.9))(@types/react@18.3.18)(react@18.3.1)
     devDependencies:
       '@repo/eslint-config':
         specifier: workspace:*

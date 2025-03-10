@@ -12,9 +12,9 @@ import { FontWeight, TypoVariant } from '@interfaces';
 
 // Hooks
 import {
+  VerifyCodeError,
   useAuthVerifyCode,
   useAuthResendOtp,
-  VerifyCodeError,
 } from '@repo/hooks';
 
 // Stores

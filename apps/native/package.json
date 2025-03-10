@@ -15,7 +15,6 @@
     "@repo/constants": "workspace:*",
     "@repo/hooks": "workspace:*",
     "@repo/models": "workspace:*",
-    "@repo/services": "workspace:*",
     "@repo/stores": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",

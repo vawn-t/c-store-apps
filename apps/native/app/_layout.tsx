@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import LogRocket from '@logrocket/react-native';
 
 import { LOG_ROCKET_APP_ID } from '@repo/constants';
-import { colors, GlobalLoader, ToastProvider } from '@repo/ui';
+import { GlobalLoader, ToastProvider } from '@repo/ui';
 import { useStore } from '@repo/stores';
 
 // Keep the splash screen visible while we fetch resources

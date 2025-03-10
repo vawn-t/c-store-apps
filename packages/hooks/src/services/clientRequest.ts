@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 // Constants
-import { SECURE_STORE, SERVER_ERROR } from '@repo/constants';
+import { API_URL, SECURE_STORE, SERVER_ERROR } from '@repo/constants';
 import { getValueFor } from '@repo/utils';
 
 const defaultOptions = {
-  baseURL: process.env.EXPO_PUBLIC_API_URL,
+  baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
