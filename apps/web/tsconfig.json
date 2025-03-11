@@ -5,8 +5,11 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["./assets/*"],
+      "@provider": ["./src/provider/index.tsx"],
+      "@layouts": ["./src/layouts/index.ts"],
+      "@constants": ["./src/constants/index.ts"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/**/*", "app"],
   "exclude": ["node_modules"]
 }
