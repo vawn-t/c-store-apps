@@ -11,7 +11,11 @@ const HomeScreen = () => {
   const route = useRouter();
   const pathname = usePathname();
 
-  const handleNavigateToProductDetails = useCallback((id: number) => {}, []);
+  const handleNavigateToProductDetails = useCallback((id: number) => {
+    console.log('handleNavigateToProductDetails', id);
+
+    route.push(`/product/${id}`);
+  }, []);
 
   const handleNavigateToSearchScreen = useCallback(() => {
     if (!pathname.includes('search')) {
