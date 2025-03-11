@@ -1,10 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import { colors } from '@themes';
+
+const itemWrapperBg = Platform.select({
+  web: colors.background.dark,
+  default: colors.background.primary,
+});
 
 const styles = StyleSheet.create({
   button: {
+    cursor: 'pointer',
     alignItems: 'center',
-    backgroundColor: colors.background.primary,
     flexDirection: 'row',
     justifyContent: 'center',
   },
@@ -19,30 +24,38 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   minus: {
+    cursor: 'pointer',
     alignSelf: 'flex-start',
   },
   add: {
+    cursor: 'pointer',
     alignSelf: 'flex-end',
   },
 
   container: {
     paddingVertical: 20,
+    gap: 20,
   },
 
   row: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginVertical: 10,
     columnGap: 20,
   },
 
   itemWrapper: {
-    backgroundColor: colors.background.primary,
-    flex: 0.5,
+    backgroundColor: itemWrapperBg,
+    width: 180,
+
+    boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
+    borderRadius: 5,
+    overflow: 'hidden',
   },
   content: {
     alignItems: 'center',
+    overflow: 'visible',
   },
   price: {
     color: colors.text.dark,
@@ -83,6 +96,7 @@ const styles = StyleSheet.create({
     objectFit: 'contain',
   },
   favoriteIcon: {
+    cursor: 'pointer',
     position: 'absolute',
     right: 10,
     top: 10,

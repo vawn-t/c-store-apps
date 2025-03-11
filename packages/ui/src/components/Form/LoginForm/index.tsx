@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Switch, TextInput, View } from 'react-native';
 
 // Components
@@ -30,6 +30,13 @@ const LoginForm = ({ onError, onSuccess, onForgotPassword }: Props) => {
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    setFormData({
+      email: 'temp.mail@tempmail.vn',
+      password: '!Asnet123',
+    });
+  }, []);
 
   // Refs
   const emailRef = useRef<TextInput>(null);
