@@ -1,11 +1,17 @@
 'use client';
 
-import { Categories, colors, FeaturedProducts, SearchBar } from '@repo/ui';
 import { usePathname, useRouter } from 'next/navigation';
 import { useCallback } from 'react';
-import { ScrollView } from 'react-native';
 
-import styles from './styles';
+import {
+  Button,
+  CartIcon,
+  Categories,
+  colors,
+  FeaturedProducts,
+  SearchBar,
+} from '@repo/ui';
+import { PostAuthLayout } from '@layouts';
 
 const HomeScreen = () => {
   const route = useRouter();
@@ -23,16 +29,44 @@ const HomeScreen = () => {
     }
   }, [pathname]);
 
+  const handleNavigateToCartScreen = useCallback(() => {
+    route.push('/cart');
+  }, []);
+
   return (
-    <ScrollView contentContainerStyle={styles.container} nestedScrollEnabled>
-      <SearchBar
-        onNavigateToSearch={handleNavigateToSearchScreen}
-        backgroundInputColor={colors.background.primary}
-      />
+    <PostAuthLayout hideBackButton backgroundColor={colors.background.primary}>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+        }}
+      >
+        <SearchBar
+          onNavigateToSearch={handleNavigateToSearchScreen}
+          backgroundInputColor={colors.background.primary}
+        />
+
+        <Button
+          style={{
+            margin: 15,
+            backgroundColor: colors.primary.dark,
+            display: 'flex',
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          onPress={handleNavigateToCartScreen}
+        >
+          <CartIcon />
+        </Button>
+      </div>
 
       <Categories />
       <FeaturedProducts onNavigateToDetails={handleNavigateToProductDetails} />
-    </ScrollView>
+    </PostAuthLayout>
   );
 };
 

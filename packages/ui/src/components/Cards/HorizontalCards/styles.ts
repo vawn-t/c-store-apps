@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
+    padding: 5,
   },
   baseTitle: {
     textAlign: 'center',
@@ -48,10 +49,7 @@ const styles = StyleSheet.create({
   itemWrapper: {
     backgroundColor: itemWrapperBg,
     width: 180,
-
-    boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
     borderRadius: 5,
-    overflow: 'hidden',
   },
   content: {
     alignItems: 'center',

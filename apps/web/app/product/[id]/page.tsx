@@ -1,48 +1,33 @@
 'use client';
 
-import { Image, View } from 'react-native';
 import { useParams } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 // Components
-import { BackIcon, Button, colors, ProductInfo } from '@repo/ui';
+import { ProductInfo } from '@repo/ui';
 import { LoadingIndicator } from '@repo/ui';
 
 // Hooks
 import { useProductDetail } from '@repo/hooks';
 
 // Styles
-import styles from './styles';
+import styles from './styles.module.css';
+import { PostAuthLayout } from '@layouts';
 
 const ProductScreen = () => {
   const { id } = useParams();
-  const router = useRouter();
 
   const { data } = useProductDetail(+id);
 
   return (
-    <View style={styles.contain}>
-      <Button
-        onPress={() => router.back()}
-        icon={<BackIcon color={colors.text.dark} />}
-        style={{
-          position: 'absolute',
-          top: 15,
-          left: 15,
-          zIndex: 10,
-        }}
-      ></Button>
-      <View style={styles.circle} />
-
+    <PostAuthLayout>
       {!data ? (
         <LoadingIndicator />
       ) : (
         <>
-          <Image
-            alt="background"
-            source={{ uri: data.image }}
-            style={styles.image}
-          />
+          <div className={styles.imgWrapper}>
+            <Image alt={data.name} src={data.image} fill objectFit="contain" />
+          </div>
           <ProductInfo
             id={data.id}
             price={data.price}
@@ -52,7 +37,7 @@ const ProductScreen = () => {
           />
         </>
       )}
-    </View>
+    </PostAuthLayout>
   );
 };
 
