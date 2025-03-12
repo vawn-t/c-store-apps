@@ -31,13 +31,6 @@ const LoginForm = ({ onError, onSuccess, onForgotPassword }: Props) => {
     password: '',
   });
 
-  useEffect(() => {
-    setFormData({
-      email: 'temp.mail@tempmail.vn',
-      password: '!Asnet123',
-    });
-  }, []);
-
   // Refs
   const emailRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
