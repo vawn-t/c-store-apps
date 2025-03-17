@@ -1,4 +1,4 @@
-name: Build Android app
+name: EAS Build Android app
 
 on:
   pull_request:
