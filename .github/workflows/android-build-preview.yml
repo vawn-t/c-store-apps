@@ -1,8 +1,8 @@
-name: EAS Build Android Development app
+name: EAS Build Android Preview app
 
 on:
   pull_request:
-    branches: [dev]
+    branches: [preview]
 
 jobs:
   build:
@@ -45,4 +45,4 @@ jobs:
         run: pnpm build
 
       - name: Build Android app
-        run: cd apps/native && eas build --platform android --profile development --non-interactive
+        run: cd apps/native && eas build --platform android --profile preview --non-interactive
