@@ -8,6 +8,18 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
       "dependsOn": ["^build"]
     },
+    "build:local": {
+      "dependsOn": ["^build:local"]
+    },
+    "build:dev": {
+      "dependsOn": ["^build:dev"]
+    },
+    "build:preview": {
+      "dependsOn": ["^build:preview"]
+    },
+    "build:production": {
+      "dependsOn": ["^build:production"]
+    },
     "dev": {
       "cache": false,
       "persistent": true

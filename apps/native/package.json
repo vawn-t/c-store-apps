@@ -8,7 +8,10 @@
     "ios": "expo run:ios",
     "eject": "expo eject",
     "postinstall": "cd ../.. && pnpm build",
-    "build:local": "eas build --profile development --platform android --local"
+    "build:local": "eas build --profile development --platform android --local",
+    "build:dev": "eas build --profile development --platform android",
+    "build:preview": "eas build --profile preview --platform android",
+    "build:production": "eas build --profile production --platform android"
   },
   "dependencies": {
     "@logrocket/react-native": "^1.47.10",
