@@ -45,4 +45,4 @@ jobs:
         run: pnpm build
 
       - name: Build Android Development app
-        run: pnpm build:dev
+        run: cd apps/native && eas build --platform android --profile development --non-interactive
