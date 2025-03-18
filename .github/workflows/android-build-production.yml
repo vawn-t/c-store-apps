@@ -3,8 +3,8 @@ name: EAS Build Android Production app
 on:
   pull_request:
     branches: [main]
-  paths-ignore:
-    - 'apps/web/**'
+    paths-ignore:
+      - 'apps/web/**'
 
 jobs:
   build:
