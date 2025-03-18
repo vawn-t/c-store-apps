@@ -4,8 +4,9 @@ on:
   pull_request:
     branches: [dev]
   push:
-    paths:
-      - '!apps/web/**'
+    branches: [dev]
+    paths-ignore:
+      - 'apps/web/**'
 
 jobs:
   build:
