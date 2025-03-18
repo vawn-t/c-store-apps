@@ -10,9 +10,10 @@ import { LoadingIndicator } from '@repo/ui';
 // Hooks
 import { useProductDetail } from '@repo/hooks';
 
+import { PostAuthLayout } from '@layouts';
+
 // Styles
 import styles from './styles.module.css';
-import { PostAuthLayout } from '@layouts';
 
 const ProductScreen = () => {
   const { id } = useParams();
