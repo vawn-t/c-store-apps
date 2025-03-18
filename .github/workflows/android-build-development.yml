@@ -6,37 +6,45 @@ on:
     paths-ignore:
       - 'apps/web/**'
 
-  workflow_dispatch:
-    on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-        - info
-        - warning
-        - debug
-      tags:
-        description: 'Test scenario tags'
-        required: false
-        type: boolean
-      environment:
-        description: 'Environment to run tests against'
-        type: environment
-        required: true
+jobs:
+  build:
+    name: EAS Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
-  jobs:
-    log-the-inputs:
-      runs-on: ubuntu-latest
-      steps:
-        - run: |
-            echo "Log level: $LEVEL"
-            echo "Tags: $TAGS"
-            echo "Environment: $ENVIRONMENT"
-          env:
-            LEVEL: ${{ inputs.logLevel }}
-            TAGS: ${{ inputs.tags }}
-            ENVIRONMENT: ${{ inputs.environment }}
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Turborepo build pipeline
+        run: pnpm build
+
+      - name: Build Android app
+        run: cd apps/native && eas build --platform android --profile development --non-interactive
