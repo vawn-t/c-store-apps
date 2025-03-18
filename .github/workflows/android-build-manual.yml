@@ -11,7 +11,7 @@ on:
         options:
           - dev
           - preview
-          - production
+          - main
       comment:
         description: 'Build comment (optional)'
         required: false
