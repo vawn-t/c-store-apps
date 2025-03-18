@@ -1,0 +1,70 @@
+name: Manual EAS Android Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Build environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - preview
+          - main
+      comment:
+        description: 'Build comment (optional)'
+        required: false
+        type: string
+
+jobs:
+  build-android:
+    name: EAS Build Android
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Setup Expo
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Create environment file
+        run: |
+          echo "EXPO_PUBLIC_API_URL=${{ vars.EXPO_PUBLIC_API_URL }}" > apps/native/.env
+          echo "EXPO_PUBLIC_LOG_ROCKET=${{ vars.EXPO_PUBLIC_LOG_ROCKET }}" >> apps/native/.env
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run Turborepo build pipeline
+        run: pnpm build
+
+      - name: Build Android app
+        run: |
+          echo "Building for ${{ inputs.environment }} environment"
+          echo "Comment: ${{ inputs.comment }}"
+          cd apps/native && eas build --platform android --profile ${{ inputs.environment }} --non-interactive

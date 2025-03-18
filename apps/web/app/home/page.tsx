@@ -19,8 +19,6 @@ const HomeScreen = () => {
   const pathname = usePathname();
 
   const handleNavigateToProductDetails = useCallback((id: number) => {
-    console.log('handleNavigateToProductDetails', id);
-
     route.push(`/product/${id}`);
   }, []);
 

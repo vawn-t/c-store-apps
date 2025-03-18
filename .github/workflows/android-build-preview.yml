@@ -3,6 +3,8 @@ name: EAS Build Android Preview app
 on:
   pull_request:
     branches: [preview]
+    paths-ignore:
+      - 'apps/web/**'
 
 jobs:
   build:

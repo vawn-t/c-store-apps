@@ -3,6 +3,8 @@ name: EAS Build Android Development app
 on:
   pull_request:
     branches: [dev]
+    paths-ignore:
+      - 'apps/web/**'
 
 jobs:
   build:
@@ -22,9 +24,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - uses: pnpm/action-setup@v3 # installs the pnpm packages manager in the runner environment
+      - uses: pnpm/action-setup@v3
         with:
-          version: 8 # pnpm version
+          version: 8
 
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
