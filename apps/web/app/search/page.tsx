@@ -5,9 +5,13 @@ import { useCallback, useEffect } from 'react';
 import { View } from 'react-native';
 
 // Components
-import { BackIcon } from '@repo/ui';
-import { HistorySearch, SearchBar, SearchResult } from '@repo/ui';
-import { LoadingIndicator } from '@repo/ui';
+import {
+  BackIcon,
+  LoadingIndicator,
+  HistorySearch,
+  SearchBar,
+  SearchResult,
+} from '@repo/ui';
 
 // Themes
 import { colors } from '@repo/ui';
