@@ -52,6 +52,11 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
+      - name: Create environment file
+        run: |
+          echo "EXPO_PUBLIC_API_URL=${{ secrets.API_URL }}" > apps/native/.env
+          echo "EXPO_PUBLIC_LOG_ROCKET=${{ secrets.LOG_ROCKET }}" >> apps/native/.env
+
       - name: Install dependencies
         run: pnpm install
 
