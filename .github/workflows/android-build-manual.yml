@@ -6,10 +6,10 @@ on:
       environment:
         description: 'Build environment'
         required: true
-        default: 'dev'
+        default: 'development'
         type: choice
         options:
-          - dev
+          - development
           - preview
           - main
       comment:
