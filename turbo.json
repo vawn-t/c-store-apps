@@ -27,7 +27,12 @@
       "cache": false
     },
     "test": {
-      "dependsOn": ["^test"]
+      "dependsOn": ["^test"],
+      "outputs": []
+    },
+    "test:watch": {
+      "dependsOn": ["^test:watch"],
+      "outputs": []
     }
   }
 }
