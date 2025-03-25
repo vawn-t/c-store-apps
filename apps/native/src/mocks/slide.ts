@@ -5,8 +5,7 @@ export const slides: Slide[] = [
   {
     id: 1,
     title: 'Welcome to',
-    description:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy',
+    description: 'The best place to buy fresh fruits and vegetables online',
     image: Images.splash1,
   },
   {
