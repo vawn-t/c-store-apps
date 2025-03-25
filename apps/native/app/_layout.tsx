@@ -39,7 +39,10 @@ const RootLayout = () => {
     },
   });
 
-  const [isLoading] = useStore((state) => [state.isLoading]);
+  const [isLoading, disableLoading] = useStore((state) => [
+    state.isLoading,
+    state.disableLoading,
+  ]);
 
   useEffect(() => {
     if (loaded) {
@@ -88,6 +91,8 @@ const RootLayout = () => {
       updateId: Updates.isEmbeddedLaunch ? null : Updates.updateId,
       expoChannel: Updates.channel,
     });
+
+    disableLoading();
   }, []);
 
   if (!loaded) {
