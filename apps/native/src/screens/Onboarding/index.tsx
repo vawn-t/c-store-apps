@@ -16,9 +16,11 @@ import { slides } from '@mocks';
 
 // Styles
 import styles from './styles';
+import Checkbox from 'expo-checkbox';
 
 const Splash = () => {
   const [currentActiveSlide, setCurrentActiveSlide] = useState(0);
+  const [isChecked, setChecked] = useState(false);
 
   const { height } = useWindowDimensions();
 
@@ -56,6 +58,11 @@ const Splash = () => {
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
       />
       <View style={styles.footerWrapper}>
+        <Checkbox
+          value={isChecked}
+          onValueChange={setChecked}
+          color={isChecked ? '#4630EB' : undefined}
+        />
         <Footer activeSlideIndex={currentActiveSlide} slides={slides} />
       </View>
     </View>
