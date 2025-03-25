@@ -4,7 +4,7 @@ import type { Slide } from '@repo/models';
 export const slides: Slide[] = [
   {
     id: 1,
-    title: 'Welcome to',
+    title: 'Welcome to to',
     description: 'The best place to buy fresh fruits and vegetables online',
     image: Images.splash1,
   },
