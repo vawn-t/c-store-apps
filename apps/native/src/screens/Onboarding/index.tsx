@@ -1,5 +1,7 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import * as Contacts from 'expo-contacts';
 import {
+  Alert,
   FlatList,
   View,
   ViewToken,
@@ -16,11 +18,25 @@ import { slides } from '@mocks';
 
 // Styles
 import styles from './styles';
-import Checkbox from 'expo-checkbox';
 
 const Splash = () => {
   const [currentActiveSlide, setCurrentActiveSlide] = useState(0);
-  const [isChecked, setChecked] = useState(false);
+  useEffect(() => {
+    (async () => {
+      const { status } = await Contacts.requestPermissionsAsync();
+      if (status === 'granted') {
+        const { data } = await Contacts.getContactsAsync({
+          fields: [Contacts.Fields.Emails],
+        });
+
+        if (data.length > 0) {
+          const contact = data[0];
+          console.log(contact);
+          Alert.alert('Contact one', `Name: ${contact.name}`);
+        }
+      }
+    })();
+  }, []);
 
   const { height } = useWindowDimensions();
 
@@ -58,11 +74,6 @@ const Splash = () => {
         viewabilityConfigCallbackPairs={viewabilityConfigCallbackPairs.current}
       />
       <View style={styles.footerWrapper}>
-        <Checkbox
-          value={isChecked}
-          onValueChange={setChecked}
-          color={isChecked ? '#4630EB' : undefined}
-        />
         <Footer activeSlideIndex={currentActiveSlide} slides={slides} />
       </View>
     </View>
