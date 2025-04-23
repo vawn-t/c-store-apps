@@ -1,8 +1,8 @@
 {
   "expo": {
-    "owner": "van.tran",
+    "owner": "vawn99",
     "name": "C-Store App",
-    "slug": "cstore-app",
+    "slug": "c-store-app",
     "version": "1.0.0",
     "scheme": "com.turbo.example",
     "orientation": "portrait",
@@ -69,7 +69,7 @@
         "origin": false
       },
       "eas": {
-        "projectId": "c4f8ebdb-01f9-49be-ace5-d477daff4e29"
+        "projectId": "0135546b-9bd2-4c53-87a7-bcbb029ae252"
       }
     },
     "runtimeVersion": {
