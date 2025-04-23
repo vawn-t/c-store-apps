@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import { AuthLayout } from '@layouts';
@@ -25,7 +26,7 @@ const SignUpScreen = () => {
 
       <div>
         <Typography>Already have an account? </Typography>
-        <Link href="/login">
+        <Link href="/">
           <Typography>Login</Typography>
         </Link>
       </div>

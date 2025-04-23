@@ -7,7 +7,10 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "eject": "expo eject",
-    "build:local": "eas build --profile development --platform android --local"
+    "postinstall": "cd ../.. && pnpm build",
+    "build:local": "eas build --profile development --platform android --local",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "dependencies": {
     "@logrocket/react-native": "^1.47.10",
@@ -20,34 +23,41 @@
     "@repo/utils": "workspace:*",
     "@tanstack/react-query": "5.66.9",
     "axios": "^1.5.1",
-    "expo": "~52.0.37",
+    "expo": "~52.0.39",
     "expo-build-properties": "~0.13.2",
-    "expo-constants": "~17.0.7",
-    "expo-dev-client": "~5.0.12",
+    "expo-constants": "~17.0.8",
+    "expo-contacts": "~14.0.5",
+    "expo-dev-client": "~5.0.14",
     "expo-font": "~13.0.4",
     "expo-insights": "~0.8.2",
     "expo-linking": "~7.0.5",
-    "expo-router": "~4.0.17",
+    "expo-router": "~4.0.19",
     "expo-secure-store": "14.0.1",
     "expo-splash-screen": "~0.29.22",
     "expo-status-bar": "~2.0.1",
-    "expo-system-ui": "~4.0.8",
-    "expo-updates": "~0.27.1",
+    "expo-system-ui": "^4.0.8",
+    "expo-updates": "~0.27.4",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.7",
     "react-native-gesture-handler": "2.20.2",
+    "react-native-root-siblings": "4.1.1",
     "react-native-safe-area-context": "4.12.0",
     "react-native-screens": "4.4.0",
     "react-native-svg": "15.8.0",
     "react-native-web": "~0.19.10",
-    "zustand": "4.4.4",
-    "react-native-root-siblings": "4.1.1"
+    "zustand": "4.4.4"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@expo/webpack-config": "^19.0.0",
+    "@testing-library/jest-native": "^5.4.3",
+    "@testing-library/react-native": "^13.2.0",
     "@types/react": "~18.3.18",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "expo-atlas": "^0.4.0",
+    "jest": "^29.7.0",
+    "jest-expo": "^52.0.6",
     "typescript": "5.5.4"
   },
   "expo": {
@@ -61,7 +71,8 @@
           "@repo/models",
           "@repo/services",
           "@repo/stores",
-          "@repo/utils"
+          "@repo/utils",
+          "@logrocket/react-native"
         ],
         "listUnknownPackages": true
       }

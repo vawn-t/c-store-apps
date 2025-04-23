@@ -1,15 +1,16 @@
 {
   "expo": {
-    "owner": "van.tran",
-    "name": "Grocery",
-    "slug": "grocery-app",
+    "owner": "vawn99",
+    "name": "C-Store App",
+    "slug": "c-store-app",
     "version": "1.0.0",
     "scheme": "com.turbo.example",
     "orientation": "portrait",
     "icon": "./assets/icons/icon-light.png",
     "userInterfaceStyle": "light",
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/c4f8ebdb-01f9-49be-ace5-d477daff4e29"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -54,7 +55,13 @@
         }
       ],
       "@logrocket/react-native",
-      "expo-secure-store"
+      "expo-secure-store",
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow $(PRODUCT_NAME) to access your contacts."
+        }
+      ]
     ],
     "newArchEnabled": true,
     "extra": {
@@ -62,8 +69,11 @@
         "origin": false
       },
       "eas": {
-        "projectId": "c4f8ebdb-01f9-49be-ace5-d477daff4e29"
+        "projectId": "0135546b-9bd2-4c53-87a7-bcbb029ae252"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }

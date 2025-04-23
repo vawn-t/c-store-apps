@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { TouchableWithoutFeedback, View, TouchableOpacity } from 'react-native';
 
@@ -6,6 +7,7 @@ import { AddIcon, CartTinyIcon, MinusIcon, useToast } from '@components';
 import { Typography } from '@components';
 
 // Interfaces
+import { FontWeight, TypoVariant } from '@interfaces';
 
 // Themes
 import { colors } from '@themes';
@@ -23,7 +25,6 @@ import {
 
 // Styles
 import styles from './styles';
-import { FontWeight, TypoVariant } from '@interfaces';
 import { SUCCESS } from '@repo/constants';
 
 interface IProps {
