@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import * as Contacts from 'expo-contacts';
 import {
   Alert,
   FlatList,
@@ -21,22 +20,6 @@ import styles from './styles';
 
 const Splash = () => {
   const [currentActiveSlide, setCurrentActiveSlide] = useState(0);
-  useEffect(() => {
-    (async () => {
-      const { status } = await Contacts.requestPermissionsAsync();
-      if (status === 'granted') {
-        const { data } = await Contacts.getContactsAsync({
-          fields: [Contacts.Fields.Emails],
-        });
-
-        if (data.length > 0) {
-          const contact = data[0];
-          console.log(contact);
-          Alert.alert('Contact one', `Name: ${contact.name}`);
-        }
-      }
-    })();
-  }, []);
 
   const { height } = useWindowDimensions();
 

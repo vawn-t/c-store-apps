@@ -1,4 +1,4 @@
-name: Grocery APP CI
+name: C-Store APP CI
 
 on:
   pull_request:

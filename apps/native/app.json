@@ -1,8 +1,8 @@
 {
   "expo": {
     "owner": "van.tran",
-    "name": "Grocery",
-    "slug": "grocery-app",
+    "name": "C-Store App",
+    "slug": "cstore-app",
     "version": "1.0.0",
     "scheme": "com.turbo.example",
     "orientation": "portrait",

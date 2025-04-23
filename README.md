@@ -59,11 +59,7 @@ This document outlines the estimation plan for implementing a Turborepo-based pr
 
 ## DESIGN
 
-[[Figma](<https://www.figma.com/design/Hq2LNnduVW2jXFXdJNEQd7/Grocery-App-(Big-Cart)-(Edited)?node-id=0-1&t=aqNdqeEEm5K6l03i-1>)]
-
-## WORKSPACE
-
-[[Trello](https://trello.com/invite/b/67bbd839eec37aceae381765/ATTIc64768fa90d3f2d91ff22d0cc2b7c4fa271627D1/van-tran-react-native-expo-turborepo-workspace)]
+[[Figma](https://www.figma.com/design/Hq2LNnduVW2jXFXdJNEQd7/C-Store?node-id=2366-1073&t=BnW5xB8TBDSrwDzl-1)]
 
 ## WHAT'S INSIDE?
 
@@ -82,11 +78,15 @@ This Turborepo includes the following packages/apps:
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 - `@repo/eslint-config`: `eslint.config.mjs`s used throughout the monorepo
 
-## Test accounts
+## Testing Accounts
 
-- Account 1:
-  - Email: `van.tran+1@asnet.com.vn`
-  - Password: `!Asnet123`
-- Account 2:
-  - Email: `van.tran+2@asnet.com.vn`
-  - Password: `!Asnet123`
+Use these credentials to test different user roles in the application:
+
+| Role     | Username          | Password    |
+| -------- | ----------------- | ----------- |
+| Admin    | admin@example.com | password123 |
+| Customer | user@example.com  | password123 |
+
+## Author
+
+[vawn](mailto:vantran99dn@gmail.com)
