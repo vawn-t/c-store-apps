@@ -61,6 +61,116 @@ This document outlines the estimation plan for implementing a Turborepo-based pr
 
 [[Figma](https://www.figma.com/design/Hq2LNnduVW2jXFXdJNEQd7/C-Store?node-id=2366-1073&t=BnW5xB8TBDSrwDzl-1)]
 
+## PREREQUISITES
+
+Before you begin, ensure you have the following installed:
+
+- Node.js >= 18
+- pnpm v9.15.5 or higher (npm install -g pnpm@9.15.5)
+- Expo CLI (npm install -g expo-cli)
+- Android Studio (for Android development)
+- Xcode (for iOS development, Mac only)
+
+## INSTALLATION
+
+1. Clone the repository:
+
+```shell
+git clone git@github.com:vawn-t/c-store-apps.git
+cd grocery-app
+```
+
+2. Install dependencies:
+
+```shell
+pnpm install
+```
+
+### Development
+
+Running the Applications
+Run all applications (web and native):
+
+```shell
+pnpm dev
+```
+
+Run only the web application:
+
+```shell
+pnpm dev:web
+```
+
+Run only the native application:
+
+```shell
+pnpm dev:mobile
+```
+
+For the native app, Expo will start and provide you with QR codes to run the app on your physical device using the Expo Go app, or options to run on simulators.
+
+Building the Applications
+Build all applications:
+
+```shell
+pnpm build
+```
+
+Build only the native app locally:
+
+```shell
+pnpm build:local
+```
+
+### Testing
+
+Run all tests:
+
+```shell
+pnpm test
+```
+
+Run tests in watch mode (for development):
+
+```shell
+pnpm test:watch
+```
+
+### Other Useful Commands
+
+Format code:
+
+```shell
+pnpm format
+```
+
+Lint code:
+
+```shell
+pnpm lint
+```
+
+Check TypeScript types:
+
+```shell
+pnpm check-types
+```
+
+Clean build artifacts and node_modules:
+
+```shell
+pnpm clean
+```
+
+## TESTING ACCOUNTS
+
+Use these credentials to test different user roles in the application:
+
+| Role     | Username          | Password    |
+| -------- | ----------------- | ----------- |
+| Admin    | admin@example.com | password123 |
+| Customer | user@example.com  | password123 |
+
 ## WHAT'S INSIDE?
 
 This Turborepo includes the following packages/apps:
@@ -78,14 +188,12 @@ This Turborepo includes the following packages/apps:
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 - `@repo/eslint-config`: `eslint.config.mjs`s used throughout the monorepo
 
-## Testing Accounts
+## DEPLOYMENT
 
-Use these credentials to test different user roles in the application:
+The applications can be deployed using:
 
-| Role     | Username          | Password    |
-| -------- | ----------------- | ----------- |
-| Admin    | admin@example.com | password123 |
-| Customer | user@example.com  | password123 |
+- Web: Vercel (see [Next.js deployment documentation](https://nextjs.org/docs/pages/getting-started/deploying))
+- Native: Expo Application Services ([EAS](https://expo.dev/eas))
 
 ## Author
 

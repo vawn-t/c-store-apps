@@ -12,8 +12,7 @@
     "check-types": "turbo run check-types",
     "prettier:check": "prettier --check --ignore-unknown \"**/*.{ts,tsx,js,jsx}\" --ignore-path .gitignore",
     "test": "turbo test",
-    "test:watch": "turbo test:watch",
-    "test1": "pnpm prettier:check && pnpm lint"
+    "test:watch": "turbo test:watch"
   },
   "devDependencies": {
     "prettier": "^3.1.1",
